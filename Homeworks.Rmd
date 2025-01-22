@@ -11,3 +11,4 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Week 1
 This is my homeworks page for Computational Biology.
+adding files

@@ -276,6 +276,81 @@ $(document).ready(function () {
 <h3>Week 1</h3>
 <p>This is my homeworks page for Computational Biology. adding files</p>
 </div>
+<div id="week-3-regular-expression-homework-1292024"
+class="section level3">
+<h3>Week 3 Regular Expression Homework 1/29/2024</h3>
+<p>#1. Find expression: </p>
+<p>I found multiple spaces with this expression but still left the
+spaces between the words</p>
+<p>Replace expression: ,</p>
+<p>#2. Find expression: (+), (+), (.*)</p>
+<p>Let’s break down what this regex does:</p>
+<p>(+), captures the last name in group 1 (+), captures the first name
+in group 2 (.*) captures everything after the second comma (the
+institution) in group 3 In the replacement pattern:</p>
+<p>\2 puts the first name first \1 puts the last name second (\3) puts
+the institution in parentheses</p>
+<p>Replace expression: \2 \1 (\3)</p>
+<p>#3.</p>
+<p>Find expression: (.*?.mp3)+</p>
+<p>Let’s break down the regex:</p>
+<p> matches exactly 4 digits .*? matches any characters (non-greedy)
+until .mp3 matches the literal ‘.mp3’ + matches one or more whitespace
+characters The replacement \1puts each matched filename followed by a
+newline character</p>
+<p>Replace expression: \1</p>
+<p>#4.</p>
+<p>Find expression: ()+(.*?).mp3</p>
+<p>Let’s break down what this regex does: () captures the 4-digit number
+in group 1 + matches the space(s) after the number (.*?) captures the
+title in group 2 (non-greedy match) .mp3 matches the file extension</p>
+<p>In the replacement pattern: \2 puts the title first _ adds the
+underscore \1 puts the 4-digit number after the underscore .mp3 keeps
+the file extension</p>
+<p>Replace expression: \1</p>
+<p>#5.</p>
+<p>Find expression: ([A-Z])[a-z]+,([a-z]+),.?()</p>
+<p>Let’s break down what this regex does: ([A-Z]) captures just the
+first capital letter of the genus name [a-z]+ matches the rest of the
+genus name but doesn’t capture it , matches the comma ([a-z]+) captures
+the species name , matches the comma .?atches the decimal number (but
+doesn’t capture it) , matches the comma () captures the final number</p>
+<p>In the replacement pattern: \1 puts the first letter of the genus _
+adds the underscore \2 puts the species name , keeps the comma \3 puts
+the final number</p>
+<p>Replace expression: \1_\2,\3</p>
+<p>#6.</p>
+<p>Find expression: ([A-Z])[a-z]+,([a-z]{4})[a-z]*,.?()</p>
+<p>Let’s break down what this regex does:</p>
+<p>([A-Z]) captures just the first capital letter of the genus name
+[a-z]+ matches the rest of the genus name but doesn’t capture it ,
+matches the comma ([a-z]{4}) captures exactly the first 4 letters of the
+species name [a-z]* matches but doesn’t capture any remaining letters of
+the species name , matches the comma .?atches the decimal number (but
+doesn’t capture it) , matches the comma () captures the final number</p>
+<p>In the replacement pattern:</p>
+<p>\1 puts the first letter of the genus _ adds the underscore \2 puts
+the first 4 letters of the species name , keeps the comma \3 puts the
+final number</p>
+<p>This will transform your data into the exact format requested, with
+abbreviated genus and species names.</p>
+<p>Replace expression: \1_\2,\3</p>
+<p>#7.</p>
+<p>Find expression: ([A-Z][a-z]{2})[a-z]+,([a-z]{3})[a-z]*,(.),()</p>
+<p>Let’s break down what this regex does:</p>
+<p>Let’s break down what this regex does:</p>
+<p>([A-Z][a-z]{2}) captures the first 3 letters of the genus name [a-z]+
+matches but doesn’t capture the rest of the genus name , matches the
+comma ([a-z]{3}) captures the first 3 letters of the species name [a-z]*
+matches but doesn’t capture any remaining letters , matches the comma
+(.) captures the decimal number , matches the comma () captures the
+final number</p>
+<p>In the replacement pattern:</p>
+<p>\1\2 concatenates the 3-letter genus and species abbreviations , adds
+the first comma \4 puts the final number second , adds the second comma
+\3 puts the decimal number last</p>
+<p>Replace expression: \1\2,\4,\3</p>
+</div>
 
 
 

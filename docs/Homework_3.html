@@ -11,9 +11,9 @@
 
 <meta name="author" content="Graham Montague" />
 
-<meta name="date" content="2025-01-22" />
+<meta name="date" content="2025-02-05" />
 
-<title>Homeworks</title>
+<title>Homework_3</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -265,19 +265,186 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Homeworks</h1>
+<h1 class="title toc-ignore">Homework_3</h1>
 <h4 class="author">Graham Montague</h4>
-<h4 class="date">2025-01-22</h4>
+<h4 class="date">2025-02-05</h4>
 
 </div>
 
 
-<div id="week-1" class="section level1">
-<h1>Week 1</h1>
-<p>This is my homeworks page for Computational Biology.</p>
-</div>
 <div id="homework-3-regular-expression" class="section level1">
 <h1>Homework 3 Regular Expression</h1>
+<div id="question-1" class="section level4">
+<h4>Question 1</h4>
+<pre class="r"><code>Find expression:  \s{2,}
+Replace expression: ,
+
+I found multiple spaces with this expression but still left the spaces between the words. 
+
+Here is what the find and replace expressions do:
+\s finds the whitespaces
+{2,} finds the two or more times
+, replaces with a comma</code></pre>
+</div>
+<div id="question-2" class="section level4">
+<h4>Question 2</h4>
+<pre class="r"><code>Find expression:  (\w+), (\w+), (.*)
+Replace expression: \2 \1 (\3)
+
+Here is what the find expression specifically does:
+
+(\w+), captures the last name in the first group
+(\w+), captures the first name in the second group
+(.*) captures all text after the second comma including the college in the third group
+
+Here is what the replacement expression does:
+
+\2 replaces the first name in the replace expression
+\1 replaces the last name after the first name
+(\3) replaces the college in parentheses</code></pre>
+</div>
+<div id="question-3" class="section level4">
+<h4>Question 3</h4>
+<pre class="r"><code>Find expression:  (\d{4}.*?\.mp3)\s+
+Replace expression: \1\n
+
+Here is what the find expression does:
+
+\d{4} finds exactly 4 digits in the text
+.*? finds any characters using the non-greedy command
+\.mp3 finds the the exact writing of &#39;.mp3&#39;
+\s+ finds more than or equal to 1 whitespace characters
+
+The replacement expression \1\n puts each matched name to a new line </code></pre>
+</div>
+<div id="question-4" class="section level4">
+<h4>Question 4</h4>
+<pre class="r"><code>Find expression:  (\d{4})\s+(.*?)\.mp3
+Replace expression: \1\n
+
+Here is what the find expression does:
+
+(\d{4}) captures the four digit number in the first group
+\s+ finds the multiple spaces after the selected number
+(.*?) captures the title in the second group and is using the non-greedy command 
+\.mp3 finds the writing of &#39;.mp3&#39;
+
+In the replacement expression this is what it does:
+  
+\2 replaces the title first
+_ includes the underscore to the text
+\1 replaces the 4-digit number after the underscore above
+.mp3 keeps the &#39;.mp3&#39;</code></pre>
+</div>
+<div id="question-5" class="section level4">
+<h4>Question 5</h4>
+<pre class="r"><code>Find expression:  ([A-Z])[a-z]+,([a-z]+),\d+\.?\d*,(\d+)
+Replace expression: \1_\2,\3
+
+Here is what the find expression does:
+  
+([A-Z]) captures the first capital letter of the genus text
+[a-z]+ finds the rest of the genus but does not capture it
+, finds the comma in the text
+([a-z]+) captures the species name
+, finds the comma
+\d+\.?\d* finds the decimal number and does not capture it
+, finds the comma
+(\d+) captures the final number in the text
+
+Here is what the replacement expression does:
+  
+\1 replaces the first letter of the genus
+_ includes an underscore
+\2 replaces the species name
+, keeps the comma
+\3 replaces the final number</code></pre>
+</div>
+<div id="question-6" class="section level4">
+<h4>Question 6</h4>
+<pre class="r"><code>Find expression:  ([A-Z])[a-z]+,([a-z]{4})[a-z]*,\d+\.?\d*,(\d+)
+Replace expression: \1_\2,\3
+
+Here is what the find expression does:
+  
+([A-Z]) captures the first captial letter of the genus
+[a-z]+ finds the rest of the genus name, does not capture it
+, finds the comma
+([a-z]{4}) captures exactly the first 4 letters of the species name
+[a-z]* finds remaining letters in the text
+, finds the comma
+\d+\.?\d* finds the decimal number and does not capture it
+, finds the comma
+(\d+) captures the final number of the text
+
+Here is what the replacement expression does:
+
+\1 replaces the first letter of the genus
+_ includes the underscore
+\2 replaces the first 4 letters of the species name
+,  the comma remains
+\3 the final number remains</code></pre>
+</div>
+<div id="question-7" class="section level4">
+<h4>Question 7</h4>
+<pre class="r"><code>Find expression:  ([A-Z][a-z]{2})[a-z]+,([a-z]{3})[a-z]*,(\d+\.\d+),(\d+)
+Replace expression: \1\2,\4,\3 
+
+
+Here is what the expression does:
+  
+([A-Z][a-z]{2}) captures the the first three letters in the genus
+[a-z]+ finds the rest of the genus name
+, finds the comma in the text
+([a-z]{3}) captures the first 3 letters of the species name
+[a-z]* finds and does not capture the rest of the species name
+, matches the comma
+(\d+\.\d+) captures the decimal number in the text
+, matches the comma
+(\d+) captures the last number
+
+Here is what the replacement expression does:
+
+\1\2 combines the genus and species
+, includes the first comma
+\4 replaces the final number so it is seconds
+, adds the second comma
+\3 finally puts the decimal last</code></pre>
+</div>
+<div id="question-8" class="section level4">
+<h4>Question 8</h4>
+<p>Changes made: First, I want to clean up the pathogen_binary column.
+The inputs I am expecting to see in this column are 1 and 0s (because it
+is a binary column). However, there are NA’s in the column. Therefore, I
+want to change these to 0s.</p>
+<pre class="r"><code>1. Find expression: NA (I also checked the case sensitive button within the find and replace tab in BBedit)
+Replace expression: 0</code></pre>
+<p>I replaced all of the NAs with 0s. This find expression allowed me to
+not replace the “na” found in the column name.</p>
+<p>Next, I want to clean up bombus_spp and host_plant columns. The
+bombus_spp includes the species name impatiens that is clearly
+misspelled throughout the column. In addition, host_plant column also
+contains special characters that are incorrect.</p>
+<pre class="r"><code>2. Find Expressions: [!@#$%^&amp;*()_+-]
+Replace expression: with nothing (leave blank)</code></pre>
+<p>These find and replaces clean up the column to just read impatiens
+and cleaned up this column. I skipped the header columns so I did not
+replace those underscores.</p>
+<p>Now I want to add an underscore to every word combo.</p>
+<pre class="r"><code>3. Find Expressions: crown vetch
+Replace expression: crown_vetch
+
+Find Expressions: red clover
+Replace expression: red_clover
+
+Find Expressions: knot weed
+Replace expression: knot_weed</code></pre>
+<p>I do not see anything visibly wrong with the bee_caste column.
+However, the term male may be changed to “drones” or another character.
+to do this:</p>
+<pre class="r"><code>4. Find Expressions: male
+Replace expression: drone</code></pre>
+</div>
 </div>
 
 

@@ -1,17 +1,3 @@
----
-title: "Homework Week 4"
-author: "Graham Montague"
-date: "2025-02-05"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-# Homework 4
-
-```{r, eval=FALSE}
 # homework 4
 
 # Question 1
@@ -84,5 +70,3 @@ numbers <- 1:100
 # vector of all of the integers from 1 to 100 that are not divisible by 2, 3, or 7
 result <- numbers[numbers %% 2 != 0 & numbers %% 3 != 0 & numbers %% 7 != 0]
 print(result)
-
-```

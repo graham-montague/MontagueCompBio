@@ -13,7 +13,7 @@
 
 <meta name="date" content="2025-02-05" />
 
-<title>Homework_4</title>
+<title>Homework Week 4</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -265,14 +265,88 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Homework_4</h1>
+<h1 class="title toc-ignore">Homework Week 4</h1>
 <h4 class="author">Graham Montague</h4>
 <h4 class="date">2025-02-05</h4>
 
 </div>
 
 
+<div id="homework-4" class="section level1">
+<h1>Homework 4</h1>
+<pre class="r"><code># homework 4
 
+# Question 1
+x = 1.1
+a = 2.2
+b = 3.3
+
+# a.
+z &lt;- x^a^b
+print(z)
+
+# b.
+z &lt;- (x^a)^b
+print(z)
+
+# c. 
+z &lt;- 3*x^3 + 2*x^2 + 1
+print(z)
+
+# Question 2
+?rep()
+?seq()
+
+# a.
+rep(c(seq(1,8), seq(7,1)))
+
+# b.
+rep(rep(1:5, times = 1:5))
+
+# c.
+rep(5:1, times = 1:5)
+
+# Question 3
+?asin() 
+?acos()
+?atan()
+?runif
+
+# Make the two random uniform vectors
+set.seed(123)
+x &lt;- runif(1)
+print(x)
+y &lt;- runif(1)
+print(y)
+
+# Convert to polar coordinates
+polar &lt;- sqrt(x^2 + y^2)
+
+theta = atan2(y,x)
+
+print(&quot;Polar coordinates:&quot;)
+print(c(&quot;r =&quot;, polar))
+print(c(&quot;θ (in radians) =&quot;, theta))
+print(c(&quot;θ (in degrees) =&quot;, theta * (180/pi)))
+
+# Question 4
+queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
+queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;, &quot;serpent&quot;)
+queue &lt;- c(&quot;donkey&quot;, &quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;, &quot;serpent&quot;)
+queue &lt;- c(&quot;donkey&quot;, &quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
+queue &lt;- c(&quot;donkey&quot;, &quot;sheep&quot;, &quot;fox&quot;, &quot;ant&quot;)
+queue &lt;- c(&quot;donkey&quot;, &quot;sheep&quot;, &quot;fox&quot;, &quot;aphid&quot;, &quot;ant&quot;)
+
+# the aphid is the 4th in line
+
+# Question 5
+# Create sequence from 1 to 100
+numbers &lt;- 1:100
+
+# vector of all of the integers from 1 to 100 that are not divisible by 2, 3, or 7
+result &lt;- numbers[numbers %% 2 != 0 &amp; numbers %% 3 != 0 &amp; numbers %% 7 != 0]
+print(result)</code></pre>
+</div>
 
 
 

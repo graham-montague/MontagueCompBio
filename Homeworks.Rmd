@@ -59,7 +59,7 @@ Here is what the find expression does:
 \.mp3 finds the the exact writing of '.mp3'
 \s+ finds more than or equal to 1 whitespace characters
 
-The replacement \1\n puts each matched name to a new line 
+The replacement expression \1\n puts each matched name to a new line 
 ```
 
 
@@ -75,7 +75,7 @@ Here is what the find expression does:
 (.*?) captures the title in the second group and is using the non-greedy command 
 \.mp3 finds the writing of '.mp3'
 
-In the replacement expression:
+In the replacement expression this is what it does:
   
 \2 replaces the title first
 _ includes the underscore to the text
@@ -99,7 +99,8 @@ Here is what the find expression does:
 , finds the comma
 (\d+) captures the final number in the text
 
-In the replacement pattern:
+Here is what the replacement expression does:
+  
 \1 replaces the first letter of the genus
 _ includes an underscore
 \2 replaces the species name
@@ -124,7 +125,7 @@ Here is what the find expression does:
 , finds the comma
 (\d+) captures the final number of the text
 
-Here is what the replacement statement does:
+Here is what the replacement expression does:
 
 \1 replaces the first letter of the genus
 _ includes the underscore
@@ -137,11 +138,11 @@ _ includes the underscore
 #### Question 7
 ```{r, eval=FALSE}
 Find expression:  ([A-Z][a-z]{2})[a-z]+,([a-z]{3})[a-z]*,(\d+\.\d+),(\d+)
-Replace expression: \1\2,\4,\3
-```
+Replace expression: \1\2,\4,\3 
+
 
 Here is what the expression does:
-```{r, eval=FALSE}
+  
 ([A-Z][a-z]{2}) captures the the first three letters in the genus
 [a-z]+ finds the rest of the genus name
 , finds the comma in the text
@@ -152,7 +153,7 @@ Here is what the expression does:
 , matches the comma
 (\d+) captures the last number
 
-In the replacement pattern:
+Here is what the replacement expression does:
 
 \1\2 combines the genus and species
 , includes the first comma

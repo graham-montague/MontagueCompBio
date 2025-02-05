@@ -1,0 +1,12 @@
+---
+title: "Homework Week 4"
+author: "Graham Montague"
+date: "2025-02-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+

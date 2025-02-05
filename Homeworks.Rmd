@@ -12,4 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 # Week 1
 This is my homeworks page for Computational Biology.
 
-# Homework 3 Regular Expression
+# Homework Links
+
+[Week 3](Homework_3.html)
+
+[Week 4](Homework_4.html)
+

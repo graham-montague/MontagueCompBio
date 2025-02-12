@@ -71,7 +71,7 @@ numbers <- 1:100
 result <- numbers[numbers %% 2 != 0 & numbers %% 3 != 0 & numbers %% 7 != 0]
 print(result)
 
-#---------------------------------------------------
+
 # homework 5 ---------------------------------------
 
 # Question 1 : Assign to the variable n_dims a single random integer between 3 and 10.
@@ -205,7 +205,7 @@ my_df <- data.frame(
 print(my_df)
 
 # part c: for the first variable, use a single line of code in R to select 4 random rows and replace the numerical values in those rows with NA.
-my_df$my_unis[sample(1:26, 4)] <- NA
+my_df$my_unis[sample(1:26, 4)] <- NA 
 
 # part d: for the first variable, write a single line of R code to identify which rows have the missing values.
 which(is.na(my_df$my_unis)) # columns 4, 5, 18, 21 have missing columns

@@ -1,5 +1,5 @@
 ---
-title: "Homework Week 3"
+title: "Homework 3"
 author: "Graham Montague"
 date: "2025-02-05"
 output: html_document
@@ -9,9 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Homework 3 Regular Expression 
+# Regular Expression 
 
-#### Question 1
+## Question 1
 
 ```{r, eval=FALSE}
 Find expression:  \s{2,}
@@ -25,7 +25,7 @@ Here is what the find and replace expressions do:
 , replaces with a comma
 ```
 
-#### Question 2
+## Question 2
 ```{r, eval=FALSE}
 Find expression:  (\w+), (\w+), (.*)
 Replace expression: \2 \1 (\3)
@@ -43,7 +43,7 @@ Here is what the replacement expression does:
 (\3) replaces the college in parentheses
 ```
 
-#### Question 3
+## Question 3
 
 ```{r, eval=FALSE}
 Find expression:  (\d{4}.*?\.mp3)\s+
@@ -60,7 +60,7 @@ The replacement expression \1\n puts each matched name to a new line
 ```
 
 
-#### Question 4
+## Question 4
 ```{r, eval=FALSE}
 Find expression:  (\d{4})\s+(.*?)\.mp3
 Replace expression: \1\n
@@ -80,7 +80,7 @@ _ includes the underscore to the text
 .mp3 keeps the '.mp3'
 ```
 
-#### Question 5
+## Question 5
 ```{r, eval=FALSE}
 Find expression:  ([A-Z])[a-z]+,([a-z]+),\d+\.?\d*,(\d+)
 Replace expression: \1_\2,\3
@@ -105,7 +105,7 @@ _ includes an underscore
 \3 replaces the final number
 ```
 
-#### Question 6
+## Question 6
 ```{r, eval=FALSE}
 Find expression:  ([A-Z])[a-z]+,([a-z]{4})[a-z]*,\d+\.?\d*,(\d+)
 Replace expression: \1_\2,\3
@@ -132,7 +132,7 @@ _ includes the underscore
 ```
 
 
-#### Question 7
+## Question 7
 ```{r, eval=FALSE}
 Find expression:  ([A-Z][a-z]{2})[a-z]+,([a-z]{3})[a-z]*,(\d+\.\d+),(\d+)
 Replace expression: \1\2,\4,\3 
@@ -159,7 +159,7 @@ Here is what the replacement expression does:
 \3 finally puts the decimal last
 ```
 
-#### Question 8
+## Question 8
 Changes made:
 First, I want to clean up the pathogen_binary column. The inputs I am expecting to see in this column are 1 and 0s (because it is a binary column). However, there are NA's in the column. Therefore, I want to change these to 0s.
 
@@ -200,7 +200,7 @@ After talking with George, there are additional white spaces in the bee_caste co
 Replace expression: \1 (add space after to make sure the worker and 4 are not right next to each other in BBedit if necessary)
 ```
 
-
+End of Homework 3
 
 
 

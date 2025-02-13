@@ -1,5 +1,5 @@
 ---
-title: "Homework Week 4"
+title: "Homework 4"
 author: "Graham Montague"
 date: "2025-02-05"
 output: html_document
@@ -9,9 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Homework 4
-
-#### Question 1 
+## Question 1 
 
 ```{r, echo=TRUE, eval=TRUE, results='show'}
 # Suppose x = 1.1, a = 2.2, and b = 3.3. Assign each expression to the value of the variable z and print the value stored in z.
@@ -33,7 +31,7 @@ print(z)
 
 ```
 
-#### Question 2
+## Question 2
 
 ```{r, echo=TRUE, eval=TRUE, results='show'}
 # Using the rep and seq functions, create the following vectors:
@@ -54,7 +52,7 @@ print(vector3)
 
 ```
 
-#### Question 3
+## Question 3
 
 ```{r, echo=TRUE, eval=TRUE, results='show'}
 # Create a vector of two random uniform numbers. In a spatial map, these can be interpreted as x and y coordinates that give the location of an individual (such as a marked forest tree in a plot that has been mapped). Using one of R’s inverse trigonometry functions (asin(), acos(), or atan()), convert these numbers into polar coordinates (If you don’t know what polar coordinates are, read about them on the web here, here, or in your calculus textbook).
@@ -85,7 +83,7 @@ print(c("θ (in degrees) =", theta * (180/pi)))
 
 ```
 
-#### Question 4
+## Question 4
 
 ```{r, echo=TRUE, eval=TRUE, results='show'}
 # Create a vector queue <- c("sheep", "fox", "owl", "ant") where queue represents the animals that are lined up to enter Noah’s Ark, with the sheep at the front of the line. Using R expressions, update queue as:
@@ -120,7 +118,7 @@ print(queue)
 # the aphid is the 4th in line
 ```
 
-#### Question 5
+## Question 5
 
 ```{r, echo=TRUE, eval=TRUE, results='show'}
 #Use R to create a vector of all of the integers from 1 to 100 that are not divisible by 2, 3, or 7. You will need one of the arithmetic operators on this cheat sheet.

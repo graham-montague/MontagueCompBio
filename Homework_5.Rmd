@@ -1,5 +1,5 @@
 ---
-title: "Homework_5"
+title: "Homework 5"
 author: "Graham Montague"
 date: "2025-02-12"
 output: html_document
@@ -8,9 +8,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-# Homework 5
 
-#### Question 1
+## Question 1
 
 ```{r, echo=TRUE, eval=TRUE, results='show'}
 # Question 1 : Assign to the variable n_dims a single random integer between 3 and 10.
@@ -87,7 +86,7 @@ typeof(eigen_matrix$vectors)
 # I re ran the code and it changed the n_dims. However, if I wanted to keep the same table, I would run the set.seed() function to prevent it from changing each time and it is reproducible. 
 ```
 
-#### Question 2
+## Question 2
 
 ```{r, echo=TRUE, eval=TRUE, results='show'}
 # Question 2 ----------------------------------
@@ -137,7 +136,7 @@ typeof(vector)
 # it is a character
 ```
 
-#### Question 3
+## Question 3
 
 ```{r, echo=TRUE, eval=TRUE, results='show'}
 # Question 3 ------------------------------------

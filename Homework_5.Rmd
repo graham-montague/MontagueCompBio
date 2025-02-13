@@ -8,11 +8,11 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# Homework 5
 
-```{r, eval=FALSE}
+#### Question 1
 
-# homework 5 ---------------------------------------
-
+```{r, echo=TRUE, eval=TRUE, results='show'}
 # Question 1 : Assign to the variable n_dims a single random integer between 3 and 10.
 # make this reproducible by using the set.seed() however, if you want new numbers you can comment this out
 # set.seed(25) 
@@ -66,13 +66,14 @@ eigen_matrix <- eigen(transposed)
 print(eigen_matrix)
 
 # part i: look carefully at the elements of $values and $vectors in the output. What kind of numbers are these?
-eigen_matrix$values
-eigen_matrix$vectors
+eigen_values <- eigen_matrix$values
+print(eigen_values)
+eigen_vectors <- eigen_matrix$vectors
+print(eigen_vectors)
 
 # I have read the R help file on the output from the eigen() function. The help file states that the values and vectors may contain complex numbers. 
 
 # part j: dig in with the typeof() function to figure out their type.
-
 # Check the typeof() for the values of of the eigen matrix
 typeof(eigen_matrix$values) 
 # this returned that the values are complex
@@ -84,8 +85,11 @@ typeof(eigen_matrix$vectors)
 # part k: if have set your code up properly, you should be able to re-run it and create a matrix of different size because n_dims will change.
 
 # I re ran the code and it changed the n_dims. However, if I wanted to keep the same table, I would run the set.seed() function to prevent it from changing each time and it is reproducible. 
+```
 
+#### Question 2
 
+```{r, echo=TRUE, eval=TRUE, results='show'}
 # Question 2 ----------------------------------
 # part a: Create a list with the following named elements: my_matrix, which is a 4 x 4 matrix filled with random uniform values
 my_matrix <- matrix(runif(16), nrow = 4, ncol = 4)
@@ -131,7 +135,11 @@ vector <- c(my_list2$matrix_element,
 # part g: what is the data type of this vector?
 typeof(vector)
 # it is a character
+```
 
+#### Question 3
+
+```{r, echo=TRUE, eval=TRUE, results='show'}
 # Question 3 ------------------------------------
 # part a: Create a data frame with the two variables (= columns) and 26 cases (= rows) below: call the first variable my_unis and fill it with 26 random uniform values from 0 to 10
 # First we need to create my_unis
@@ -147,14 +155,16 @@ print(my_df)
 my_df$my_unis[sample(1:26, 4)] <- NA 
 
 # part d: for the first variable, write a single line of R code to identify which rows have the missing values.
-which(is.na(my_df$my_unis)) # columns 4, 5, 18, 21 have missing columns
+which(is.na(my_df$my_unis)) # columns will change if you rerun the runif() function above
 
 # part e: re-order the entire data frame to arrange the second variable in alphabetical order
 my_df <- my_df[order(my_df$my_letters), ]
+print(my_df)
 
 # part f: calculate the column mean for the first variable.
-mean_variable1 <- mean(my_df$my_unis, na.rm = TRUE) # 5.15755
-
-
+mean_variable1 <- mean(my_df$my_unis, na.rm = TRUE) 
+print(mean_variable1)# 5.15755
 
 ```
+
+End of Homework 5

@@ -439,11 +439,14 @@ Replace expression: red_clover
 
 Find Expressions: knot weed
 Replace expression: knot_weed</code></pre>
-<p>I do not see anything visibly wrong with the bee_caste column.
-However, the term male may be changed to “drones” or another character.
-to do this:</p>
-<pre class="r"><code>4. Find Expressions: male
-Replace expression: drone</code></pre>
+<p>After talking with George, there are additional white spaces in the
+bee_caste column. Therefore, we need to remove the additional white
+spaces. The find expression finds all of the values in bee_caste column
+and the white spaces after them. Then the replace statement replaces it
+with the word and deletes the unnecessary white spacews. To do this see
+the find and replace expressions below:</p>
+<pre class="r"><code>4. Find Expressions: (worker|male)\s+
+Replace expression: \1 (add space after to make sure the worker and 4 are not right next to each other in BBedit if necessary)</code></pre>
 </div>
 </div>
 

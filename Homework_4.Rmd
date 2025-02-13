@@ -11,10 +11,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Homework 4
 
-```{r, eval=FALSE}
-# homework 4
+#### Question 1 
 
-# Question 1
+```{r, echo=TRUE, eval=TRUE, results='show'}
+# Suppose x = 1.1, a = 2.2, and b = 3.3. Assign each expression to the value of the variable z and print the value stored in z.
 x = 1.1
 a = 2.2
 b = 3.3
@@ -31,20 +31,33 @@ print(z)
 z <- 3*x^3 + 2*x^2 + 1
 print(z)
 
-# Question 2
+```
+
+#### Question 2
+
+```{r, echo=TRUE, eval=TRUE, results='show'}
+# Using the rep and seq functions, create the following vectors:
 ?rep()
 ?seq()
 
-# a.
-rep(c(seq(1,8), seq(7,1)))
+# a. (1,2,3,4,5,6,7,8,7,6,5,4,3,2,1)
+vector <- rep(c(seq(1,8), seq(7,1)))
+print(vector)
 
-# b.
-rep(rep(1:5, times = 1:5))
+# b. (1,2,2,3,3,3,4,4,4,4,5,5,5,5,5)
+vector2 <- rep(rep(1:5, times = 1:5))
+print(vector2)
 
-# c.
-rep(5:1, times = 1:5)
+# c. (5,4,4,3,3,3,2,2,2,2,1,1,1,1,1)
+vector3 <- rep(5:1, times = 1:5)
+print(vector3)
 
-# Question 3
+```
+
+#### Question 3
+
+```{r, echo=TRUE, eval=TRUE, results='show'}
+# Create a vector of two random uniform numbers. In a spatial map, these can be interpreted as x and y coordinates that give the location of an individual (such as a marked forest tree in a plot that has been mapped). Using one of R’s inverse trigonometry functions (asin(), acos(), or atan()), convert these numbers into polar coordinates (If you don’t know what polar coordinates are, read about them on the web here, here, or in your calculus textbook).
 ?asin() 
 ?acos()
 ?atan()
@@ -52,37 +65,74 @@ rep(5:1, times = 1:5)
 
 # Make the two random uniform vectors
 set.seed(123)
+
 x <- runif(1)
 print(x)
+
 y <- runif(1)
 print(y)
 
 # Convert to polar coordinates
 polar <- sqrt(x^2 + y^2)
+print(polar)
 
 theta = atan2(y,x)
+print(theta)
 
-print("Polar coordinates:")
 print(c("r =", polar))
 print(c("θ (in radians) =", theta))
 print(c("θ (in degrees) =", theta * (180/pi)))
 
-# Question 4
+```
+
+#### Question 4
+
+```{r, echo=TRUE, eval=TRUE, results='show'}
+# Create a vector queue <- c("sheep", "fox", "owl", "ant") where queue represents the animals that are lined up to enter Noah’s Ark, with the sheep at the front of the line. Using R expressions, update queue as:
+
+# start:
 queue <- c("sheep", "fox", "owl", "ant")
+
+#a. the serpent arrives and gets in line;
 queue <- c("sheep", "fox", "owl", "ant", "serpent")
-queue <- c("donkey", "sheep", "fox", "owl", "ant", "serpent")
-queue <- c("donkey", "sheep", "fox", "owl", "ant")
-queue <- c("donkey", "sheep", "fox", "ant")
-queue <- c("donkey", "sheep", "fox", "aphid", "ant")
+print(queue)
+# b. the sheep enters the ark;
+queue <- c("fox", "owl", "ant", "serpent")
+print(queue)
 
+# c. the donkey arrives and talks his way to the front of the line;
+queue <- c("donkey", "fox", "owl", "ant", "serpent")
+print(queue)
+
+# d. the serpent gets impatient and leaves;
+queue <- c("donkey", "fox", "owl", "ant")
+print(queue)
+
+# e. the owl gets bored and leaves;
+queue <- c("donkey", "fox", "ant")
+print(queue)
+
+# f. the aphid arrives and the ant invites him to cut in line.
+queue <- c("donkey", "fox", "aphid", "ant")
+print(queue)
+
+# g. Finally, determine the position of the aphid in the line.
 # the aphid is the 4th in line
+```
 
-# Question 5
+#### Question 5
+
+```{r, echo=TRUE, eval=TRUE, results='show'}
+#Use R to create a vector of all of the integers from 1 to 100 that are not divisible by 2, 3, or 7. You will need one of the arithmetic operators on this cheat sheet.
+
 # Create sequence from 1 to 100
 numbers <- 1:100
+print(numbers)
 
 # vector of all of the integers from 1 to 100 that are not divisible by 2, 3, or 7
 result <- numbers[numbers %% 2 != 0 & numbers %% 3 != 0 & numbers %% 7 != 0]
 print(result)
 
 ```
+
+End of Homework 4

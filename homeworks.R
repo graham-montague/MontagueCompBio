@@ -13,10 +13,6 @@
 
 
 
-
-
-
-
 # homework 4
 
 # Question 1
@@ -255,7 +251,7 @@ library(dplyr)
 # Set seed for reproducibility
 # set.seed(25)
 
-# Create the data
+# Create the dataframe
 ?rnorm()
 
 low <- data.frame(
@@ -292,14 +288,16 @@ print(summary(linear_regression))
 
 # 3. Visualizations
 # Create scatter plot with regression line
-scatter_plot <- ggplot(data, aes(x = temperature, y = CPUE)) +
+salmon_plot <- ggplot(data, aes(x = temperature, y = CPUE)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", color = "blue") +
   labs(
     title = "Linear Regression: CPUE vs Temperature",
     x = "Temperature (°C)",
     y = "CPUE (fish/hour)"
-  ) + theme(plot.title = element_text(size = 10));scatter_plot
+  ) + theme(plot.title = element_text(size = 10));salmon_plot
+
+print(salmon_plot)
 
 
 # Question 5. Try running your analysis multiple times to get a feeling for how variable the results are with the same parameters, but different sets of random numbers.
@@ -310,7 +308,7 @@ scatter_plot <- ggplot(data, aes(x = temperature, y = CPUE)) +
 # Set seed for reproducibility
 set.seed(25)
 
-# Change sample sizes
+# Change sample sizes, decreasing sample sizes
 m <- c(2,3,4,5,6,7,8,9,10,15)
 for (i in seq_along(m)){
   print(m[i])
@@ -378,4 +376,8 @@ for (i in seq_along(mean_low)){
 
 # Question 8. Write up your results in a markdown file, organized with headers and different code chunks to show your analysis. Be explicit in your explanation and justification for sample sizes, means, and variances.
 
-## Check Homework_6 tab for Markdown
+## Complete
+
+
+
+### Homework 7 -------------------------------------------------------------------

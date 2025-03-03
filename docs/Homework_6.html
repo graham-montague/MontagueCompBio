@@ -272,16 +272,52 @@ $(document).ready(function () {
 </div>
 
 
-<div id="question-1" class="section level2">
-<h2>Question 1</h2>
-<pre class="r"><code># Question 1. Think about an ongoing study in your lab (or a paper you have read in a different class), and decide on a pattern that you might expect in your experiment if a specific hypothesis were true.
-
-# I am in Dr. Mark Henderson&#39;s lab studying catch per unit effort (CPUE; fish/hr) of Atlantic Salmon in Lake Champlain using boat electrofishing. We have generated CPUE of Atlantic Salmon catch rates for a sampling protocol for fish collection for acoustic telemetry studies. Understanding the optimal sampling time is beneficial for us because we want to be most efficient while collecting fish in the field. We are interested in how the water temperature of Lake Champlain effects the CPUE of Atlantic Salmon. We hypothesize that as the water temperature increases, the CPUE of Atlantic Salmon will decrease because the Atlantic Salmon will be in deeper water and out of the electrical field where we are shocking (&lt;15 ft.). The Atlantic Salmon are cold-water fish and want to live in the cooler and deeper waters when the surface temperature is higher. 
-
-# Question 2. To start simply, assume that the data in each of your treatment groups follow a normal distribution. Specify the sample sizes, means, and variances for each group that would be reasonable if your hypothesis were true. You may need to consult some previous literature and/or an expert in the field to come up with these numbers.
-
-# Question 3. Using the methods we have covered in class, write code to create a random data set that has these attributes. Organize these data into a data frame with the appropriate structure.
-library(ggplot2)
+<div
+id="question-1.-think-about-an-ongoing-study-in-your-lab-or-a-paper-you-have-read-in-a-different-class-and-decide-on-a-pattern-that-you-might-expect-in-your-experiment-if-a-specific-hypothesis-were-true."
+class="section level3">
+<h3>Question 1. Think about an ongoing study in your lab (or a paper you
+have read in a different class), and decide on a pattern that you might
+expect in your experiment if a specific hypothesis were true.</h3>
+<div
+id="i-am-in-dr.-mark-hendersons-lab-studying-catch-per-unit-effort-cpue-fishhr-of-atlantic-salmon-in-lake-champlain-using-boat-electrofishing.-we-have-generated-cpue-of-atlantic-salmon-catch-rates-for-a-sampling-protocol-for-fish-collection-for-acoustic-telemetry-studies.-understanding-the-optimal-sampling-time-is-beneficial-for-us-because-we-want-to-be-most-efficient-while-collecting-fish-in-the-field.-we-are-interested-in-how-the-water-temperature-of-lake-champlain-effects-the-cpue-of-atlantic-salmon.-we-hypothesize-that-as-the-water-temperature-increases-the-cpue-of-atlantic-salmon-will-decrease-because-the-atlantic-salmon-will-be-in-deeper-water-and-out-of-the-electrical-field-where-we-are-shocking-15-ft..-the-atlantic-salmon-are-cold-water-fish-and-want-to-live-in-the-cooler-and-deeper-waters-when-the-surface-temperature-is-higher."
+class="section level5">
+<h5>I am in Dr. Mark Henderson’s lab studying catch per unit effort
+(CPUE; fish/hr) of Atlantic Salmon in Lake Champlain using boat
+electrofishing. We have generated CPUE of Atlantic Salmon catch rates
+for a sampling protocol for fish collection for acoustic telemetry
+studies. Understanding the optimal sampling time is beneficial for us
+because we want to be most efficient while collecting fish in the field.
+We are interested in how the water temperature of Lake Champlain effects
+the CPUE of Atlantic Salmon. We hypothesize that as the water
+temperature increases, the CPUE of Atlantic Salmon will decrease because
+the Atlantic Salmon will be in deeper water and out of the electrical
+field where we are shocking (&lt;15 ft.). The Atlantic Salmon are
+cold-water fish and want to live in the cooler and deeper waters when
+the surface temperature is higher.</h5>
+</div>
+</div>
+<div
+id="question-2.-to-start-simply-assume-that-the-data-in-each-of-your-treatment-groups-follow-a-normal-distribution.-specify-the-sample-sizes-means-and-variances-for-each-group-that-would-be-reasonable-if-your-hypothesis-were-true.-you-may-need-to-consult-some-previous-literature-andor-an-expert-in-the-field-to-come-up-with-these-numbers."
+class="section level3">
+<h3>Question 2. To start simply, assume that the data in each of your
+treatment groups follow a normal distribution. Specify the sample sizes,
+means, and variances for each group that would be reasonable if your
+hypothesis were true. You may need to consult some previous literature
+and/or an expert in the field to come up with these numbers.</h3>
+<div
+id="i-am-using-mock-electrofishing-data-collected-from-sampling-atlantic-salmon-with-boat-electrofishing-in-the-fall-in-lake-champlain."
+class="section level5">
+<h5>I am using mock electrofishing data collected from sampling Atlantic
+Salmon with boat electrofishing in the Fall in Lake Champlain.</h5>
+</div>
+</div>
+<div
+id="question-3.-using-the-methods-we-have-covered-in-class-write-code-to-create-a-random-data-set-that-has-these-attributes.-organize-these-data-into-a-data-frame-with-the-appropriate-structure."
+class="section level3">
+<h3>Question 3. Using the methods we have covered in class, write code
+to create a random data set that has these attributes. Organize these
+data into a data frame with the appropriate structure.</h3>
+<pre class="r"><code>library(ggplot2)
 library(dplyr)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
@@ -291,143 +327,237 @@ library(dplyr)</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code># Set seed for reproducibility
-# set.seed(25)
-
-# Create the data
+<pre class="r"><code># Create the dataframe
 ?rnorm()
 
 low &lt;- data.frame(
   temp_group = &quot;Low (2-4.9°C)&quot;,
   CPUE = rnorm(n = 20, mean = 18, sd = 1.2),
-  temperature = runif(20, 2, 4.9));low</code></pre>
+  temperature = runif(20, 2, 4.9))
+
+print(low)</code></pre>
 <pre><code>##       temp_group     CPUE temperature
-## 1  Low (2-4.9°C) 17.72400    2.873048
-## 2  Low (2-4.9°C) 19.03682    2.608867
-## 3  Low (2-4.9°C) 18.03183    2.056087
-## 4  Low (2-4.9°C) 17.01202    3.525432
-## 5  Low (2-4.9°C) 16.82971    4.485717
-## 6  Low (2-4.9°C) 17.50353    2.867130
-## 7  Low (2-4.9°C) 16.30767    2.969879
-## 8  Low (2-4.9°C) 17.10170    3.162876
-## 9  Low (2-4.9°C) 17.72718    4.234640
-## 10 Low (2-4.9°C) 16.33437    2.529829
-## 11 Low (2-4.9°C) 19.25189    2.960246
-## 12 Low (2-4.9°C) 17.67312    3.761860
-## 13 Low (2-4.9°C) 18.93493    2.898942
-## 14 Low (2-4.9°C) 18.47369    3.450713
-## 15 Low (2-4.9°C) 18.12341    2.983158
-## 16 Low (2-4.9°C) 17.68578    4.341701
-## 17 Low (2-4.9°C) 18.52991    2.095614
-## 18 Low (2-4.9°C) 18.80515    4.401062
-## 19 Low (2-4.9°C) 19.50316    4.579444
-## 20 Low (2-4.9°C) 19.05140    2.135942</code></pre>
+## 1  Low (2-4.9°C) 18.49176    2.102723
+## 2  Low (2-4.9°C) 16.90927    2.894233
+## 3  Low (2-4.9°C) 18.16403    4.739052
+## 4  Low (2-4.9°C) 17.21519    2.967240
+## 5  Low (2-4.9°C) 15.64008    2.468065
+## 6  Low (2-4.9°C) 19.81239    3.048556
+## 7  Low (2-4.9°C) 16.62832    2.086770
+## 8  Low (2-4.9°C) 18.96501    3.714125
+## 9  Low (2-4.9°C) 18.81509    3.031670
+## 10 Low (2-4.9°C) 18.21638    2.334705
+## 11 Low (2-4.9°C) 17.14709    2.430502
+## 12 Low (2-4.9°C) 18.46636    2.987518
+## 13 Low (2-4.9°C) 17.64002    2.566809
+## 14 Low (2-4.9°C) 18.51549    3.238843
+## 15 Low (2-4.9°C) 17.73579    3.770052
+## 16 Low (2-4.9°C) 15.81257    3.057632
+## 17 Low (2-4.9°C) 17.99032    3.237038
+## 18 Low (2-4.9°C) 19.79405    3.870421
+## 19 Low (2-4.9°C) 19.79749    2.152623
+## 20 Low (2-4.9°C) 19.94003    4.012127</code></pre>
 <pre class="r"><code>medium &lt;- data.frame(
   temp_group = &quot;Medium (5-7.9°C)&quot;,
   CPUE = rnorm(n = 20, mean = 12, sd = 1.5),
-  temperature = runif(20, 5, 7.9));medium</code></pre>
-<pre><code>##          temp_group     CPUE temperature
-## 1  Medium (5-7.9°C) 13.17517    6.403858
-## 2  Medium (5-7.9°C) 11.41658    6.811768
-## 3  Medium (5-7.9°C) 11.53967    5.002662
-## 4  Medium (5-7.9°C) 12.49969    5.693462
-## 5  Medium (5-7.9°C) 12.32785    7.764774
-## 6  Medium (5-7.9°C) 12.82427    7.649294
-## 7  Medium (5-7.9°C) 15.33909    5.854204
-## 8  Medium (5-7.9°C) 13.65571    5.005310
-## 9  Medium (5-7.9°C) 11.49046    5.787896
-## 10 Medium (5-7.9°C) 11.66669    7.250334
-## 11 Medium (5-7.9°C) 13.29718    6.757309
-## 12 Medium (5-7.9°C) 11.40860    5.606898
-## 13 Medium (5-7.9°C) 10.57860    7.429393
-## 14 Medium (5-7.9°C) 10.88196    7.780568
-## 15 Medium (5-7.9°C) 13.94016    7.107844
-## 16 Medium (5-7.9°C) 12.58646    7.238450
-## 17 Medium (5-7.9°C) 12.58985    5.228737
-## 18 Medium (5-7.9°C) 12.31877    5.201234
-## 19 Medium (5-7.9°C) 11.64561    7.265833
-## 20 Medium (5-7.9°C) 10.16854    5.397482</code></pre>
+  temperature = runif(20, 5, 7.9))
+
+print(medium)</code></pre>
+<pre><code>##          temp_group      CPUE temperature
+## 1  Medium (5-7.9°C) 11.938600    6.107339
+## 2  Medium (5-7.9°C) 11.453766    7.538831
+## 3  Medium (5-7.9°C)  9.602795    6.933937
+## 4  Medium (5-7.9°C) 13.244273    5.141880
+## 5  Medium (5-7.9°C) 11.903236    6.946314
+## 6  Medium (5-7.9°C) 11.176925    6.686907
+## 7  Medium (5-7.9°C) 11.344432    6.377967
+## 8  Medium (5-7.9°C) 12.729125    5.141475
+## 9  Medium (5-7.9°C) 11.010088    7.094247
+## 10 Medium (5-7.9°C) 11.188693    6.344357
+## 11 Medium (5-7.9°C) 11.453883    6.154492
+## 12 Medium (5-7.9°C) 12.307934    7.094248
+## 13 Medium (5-7.9°C) 10.828742    6.411708
+## 14 Medium (5-7.9°C) 14.282856    5.688156
+## 15 Medium (5-7.9°C) 11.407783    7.808581
+## 16 Medium (5-7.9°C) 11.790666    6.732025
+## 17 Medium (5-7.9°C) 12.597948    6.922835
+## 18 Medium (5-7.9°C)  9.784362    6.011354
+## 19 Medium (5-7.9°C) 10.590386    6.980192
+## 20 Medium (5-7.9°C) 13.264881    6.968713</code></pre>
 <pre class="r"><code>high &lt;- data.frame(
   temp_group = &quot;High (8-10.9°C)&quot;,
   CPUE = rnorm(n = 20, mean = 8, sd = 2),
-  temperature = runif(20, 8, 10.9));high</code></pre>
+  temperature = runif(20, 8, 10.9))
+
+print(high)</code></pre>
 <pre><code>##         temp_group      CPUE temperature
-## 1  High (8-10.9°C)  9.933984    9.136340
-## 2  High (8-10.9°C) 11.494992    8.344202
-## 3  High (8-10.9°C)  4.301487   10.489899
-## 4  High (8-10.9°C)  9.075058    9.677944
-## 5  High (8-10.9°C) 10.211324    8.911392
-## 6  High (8-10.9°C)  5.719453    8.845359
-## 7  High (8-10.9°C)  9.431467    9.877821
-## 8  High (8-10.9°C) 13.815573    9.703814
-## 9  High (8-10.9°C)  9.698888    9.013167
-## 10 High (8-10.9°C)  9.166769   10.575053
-## 11 High (8-10.9°C)  9.583680    9.630785
-## 12 High (8-10.9°C)  7.098275    9.560682
-## 13 High (8-10.9°C)  6.163308    8.548842
-## 14 High (8-10.9°C)  6.802757    9.849363
-## 15 High (8-10.9°C)  3.877435    8.358073
-## 16 High (8-10.9°C)  7.407579    9.020402
-## 17 High (8-10.9°C)  7.420958   10.628018
-## 18 High (8-10.9°C)  6.747080   10.079525
-## 19 High (8-10.9°C)  9.726674    9.686854
-## 20 High (8-10.9°C)  8.455294    8.040963</code></pre>
+## 1  High (8-10.9°C)  6.294073    9.122742
+## 2  High (8-10.9°C)  6.547032   10.638677
+## 3  High (8-10.9°C)  3.504796    9.478080
+## 4  High (8-10.9°C)  9.188975    8.048538
+## 5  High (8-10.9°C)  8.853694    8.157085
+## 6  High (8-10.9°C) 11.329284    8.220140
+## 7  High (8-10.9°C)  9.006154   10.741013
+## 8  High (8-10.9°C)  8.780301   10.728099
+## 9  High (8-10.9°C)  9.970275    9.185166
+## 10 High (8-10.9°C)  8.921591    8.754799
+## 11 High (8-10.9°C)  6.817733    8.791094
+## 12 High (8-10.9°C)  8.975112    8.536939
+## 13 High (8-10.9°C)  4.943874    9.236420
+## 14 High (8-10.9°C)  9.806812   10.269482
+## 15 High (8-10.9°C)  9.921124    9.503365
+## 16 High (8-10.9°C)  6.091875    9.073177
+## 17 High (8-10.9°C) 11.685133    9.413965
+## 18 High (8-10.9°C)  5.684252    9.539796
+## 19 High (8-10.9°C)  3.307066    8.223623
+## 20 High (8-10.9°C)  7.914440    8.244499</code></pre>
 <pre class="r"><code># combine all of the the datasets together to make a big dataset with low, medium, and high datasets
 data &lt;- rbind(low, medium, high)
 
-# Question 4. Now write code to analyze the data (probably as an ANOVA or regression analysis, but possibly as a logistic regression or contingency table analysis. Write code to generate a useful graph of the data.
+print(data)</code></pre>
+<pre><code>##          temp_group      CPUE temperature
+## 1     Low (2-4.9°C) 18.491758    2.102723
+## 2     Low (2-4.9°C) 16.909266    2.894233
+## 3     Low (2-4.9°C) 18.164032    4.739052
+## 4     Low (2-4.9°C) 17.215192    2.967240
+## 5     Low (2-4.9°C) 15.640075    2.468065
+## 6     Low (2-4.9°C) 19.812391    3.048556
+## 7     Low (2-4.9°C) 16.628318    2.086770
+## 8     Low (2-4.9°C) 18.965010    3.714125
+## 9     Low (2-4.9°C) 18.815086    3.031670
+## 10    Low (2-4.9°C) 18.216381    2.334705
+## 11    Low (2-4.9°C) 17.147087    2.430502
+## 12    Low (2-4.9°C) 18.466359    2.987518
+## 13    Low (2-4.9°C) 17.640024    2.566809
+## 14    Low (2-4.9°C) 18.515487    3.238843
+## 15    Low (2-4.9°C) 17.735790    3.770052
+## 16    Low (2-4.9°C) 15.812570    3.057632
+## 17    Low (2-4.9°C) 17.990315    3.237038
+## 18    Low (2-4.9°C) 19.794053    3.870421
+## 19    Low (2-4.9°C) 19.797495    2.152623
+## 20    Low (2-4.9°C) 19.940035    4.012127
+## 21 Medium (5-7.9°C) 11.938600    6.107339
+## 22 Medium (5-7.9°C) 11.453766    7.538831
+## 23 Medium (5-7.9°C)  9.602795    6.933937
+## 24 Medium (5-7.9°C) 13.244273    5.141880
+## 25 Medium (5-7.9°C) 11.903236    6.946314
+## 26 Medium (5-7.9°C) 11.176925    6.686907
+## 27 Medium (5-7.9°C) 11.344432    6.377967
+## 28 Medium (5-7.9°C) 12.729125    5.141475
+## 29 Medium (5-7.9°C) 11.010088    7.094247
+## 30 Medium (5-7.9°C) 11.188693    6.344357
+## 31 Medium (5-7.9°C) 11.453883    6.154492
+## 32 Medium (5-7.9°C) 12.307934    7.094248
+## 33 Medium (5-7.9°C) 10.828742    6.411708
+## 34 Medium (5-7.9°C) 14.282856    5.688156
+## 35 Medium (5-7.9°C) 11.407783    7.808581
+## 36 Medium (5-7.9°C) 11.790666    6.732025
+## 37 Medium (5-7.9°C) 12.597948    6.922835
+## 38 Medium (5-7.9°C)  9.784362    6.011354
+## 39 Medium (5-7.9°C) 10.590386    6.980192
+## 40 Medium (5-7.9°C) 13.264881    6.968713
+## 41  High (8-10.9°C)  6.294073    9.122742
+## 42  High (8-10.9°C)  6.547032   10.638677
+## 43  High (8-10.9°C)  3.504796    9.478080
+## 44  High (8-10.9°C)  9.188975    8.048538
+## 45  High (8-10.9°C)  8.853694    8.157085
+## 46  High (8-10.9°C) 11.329284    8.220140
+## 47  High (8-10.9°C)  9.006154   10.741013
+## 48  High (8-10.9°C)  8.780301   10.728099
+## 49  High (8-10.9°C)  9.970275    9.185166
+## 50  High (8-10.9°C)  8.921591    8.754799
+## 51  High (8-10.9°C)  6.817733    8.791094
+## 52  High (8-10.9°C)  8.975112    8.536939
+## 53  High (8-10.9°C)  4.943874    9.236420
+## 54  High (8-10.9°C)  9.806812   10.269482
+## 55  High (8-10.9°C)  9.921124    9.503365
+## 56  High (8-10.9°C)  6.091875    9.073177
+## 57  High (8-10.9°C) 11.685133    9.413965
+## 58  High (8-10.9°C)  5.684252    9.539796
+## 59  High (8-10.9°C)  3.307066    8.223623
+## 60  High (8-10.9°C)  7.914440    8.244499</code></pre>
+<pre class="r"><code># Question 4. Now write code to analyze the data (probably as an ANOVA or regression analysis, but possibly as a logistic regression or contingency table analysis. Write code to generate a useful graph of the data.
 
 # First, we can do a linear regression on the continuous variables 
 # Fit linear model
 linear_regression &lt;- lm(CPUE ~ temperature, data = data)
 
-my_out &lt;- c(slope=summary(linear_regression)$coefficients[2,1],
+print(linear_regression)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Coefficients:
+## (Intercept)  temperature  
+##       22.13        -1.53</code></pre>
+<pre class="r"><code>my_out &lt;- c(slope=summary(linear_regression)$coefficients[2,1],
             p_value=summary(linear_regression)$coefficients[2,4],
-            r_squared = summary(linear_regression)$r.squared);my_out</code></pre>
-<pre><code>##         slope       p_value     r_squared 
-## -1.423983e+00  2.004982e-20  7.746941e-01</code></pre>
-<pre class="r"><code>print(summary(linear_regression))</code></pre>
+            r_squared = summary(linear_regression)$r.squared)
+
+print(summary(linear_regression))</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = CPUE ~ temperature, data = data)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -6.1184 -1.2115  0.1649  1.4199  5.7360 
+## -6.2436 -1.3237 -0.3064  1.3252  3.9556 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  21.8976     0.6940   31.55   &lt;2e-16 ***
-## temperature  -1.4240     0.1008  -14.12   &lt;2e-16 ***
+## (Intercept)  22.1326     0.6993   31.65   &lt;2e-16 ***
+## temperature  -1.5300     0.1030  -14.86   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2.07 on 58 degrees of freedom
-## Multiple R-squared:  0.7747, Adjusted R-squared:  0.7708 
-## F-statistic: 199.4 on 1 and 58 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>## 
-
-# 3. Visualizations
+## Residual standard error: 2.098 on 58 degrees of freedom
+## Multiple R-squared:  0.792,  Adjusted R-squared:  0.7884 
+## F-statistic: 220.8 on 1 and 58 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code># Visualizations
 # Create scatter plot with regression line
-scatter_plot &lt;- ggplot(data, aes(x = temperature, y = CPUE)) +
+salmon_plot &lt;- ggplot(data, aes(x = temperature, y = CPUE)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = &quot;lm&quot;, color = &quot;blue&quot;) +
   labs(
     title = &quot;Linear Regression: CPUE vs Temperature&quot;,
     x = &quot;Temperature (°C)&quot;,
     y = &quot;CPUE (fish/hour)&quot;
-  ) + theme(plot.title = element_text(size = 10));scatter_plot</code></pre>
+  ) + theme(plot.title = element_text(size = 10));salmon_plot</code></pre>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="Homework_6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code># Question 5. Try running your analysis multiple times to get a feeling for how variable the results are with the same parameters, but different sets of random numbers.
-
-## I have rerun the code above so that the random numbers change each time to see the differences!
-
-# Question 6. Now, using a series of for loops, adjust the parameters of your data to explore how they might impact your results/analysis, and store the results of your for loops into an object so you can view it. For example, what happens if you were to start with a small sample size and then re-run your analysis? Would you still get a significant result? What if you were to increase that sample size by 5, or 10? How small can your sample size be before you detect a significant pattern (p &lt; 0.05)? How small can the differences between the groups be (the “effect size”) for you to still detect a significant pattern?
-# Set seed for reproducibility
+<pre class="r"><code>print(salmon_plot)</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+</div>
+<div
+id="question-5.-try-running-your-analysis-multiple-times-to-get-a-feeling-for-how-variable-the-results-are-with-the-same-parameters-but-different-sets-of-random-numbers."
+class="section level3">
+<h3>Question 5. Try running your analysis multiple times to get a
+feeling for how variable the results are with the same parameters, but
+different sets of random numbers.</h3>
+<div
+id="i-have-rerun-the-code-above-so-that-the-random-numbers-change-each-time-to-see-the-differences"
+class="section level5">
+<h5>I have rerun the code above so that the random numbers change each
+time to see the differences!</h5>
+</div>
+</div>
+<div
+id="question-6.-now-using-a-series-of-for-loops-adjust-the-parameters-of-your-data-to-explore-how-they-might-impact-your-resultsanalysis-and-store-the-results-of-your-for-loops-into-an-object-so-you-can-view-it.-for-example-what-happens-if-you-were-to-start-with-a-small-sample-size-and-then-re-run-your-analysis-would-you-still-get-a-significant-result-what-if-you-were-to-increase-that-sample-size-by-5-or-10-how-small-can-your-sample-size-be-before-you-detect-a-significant-pattern-p-0.05-how-small-can-the-differences-between-the-groups-be-the-effect-size-for-you-to-still-detect-a-significant-pattern"
+class="section level3">
+<h3>Question 6. Now, using a series of for loops, adjust the parameters
+of your data to explore how they might impact your results/analysis, and
+store the results of your for loops into an object so you can view it.
+For example, what happens if you were to start with a small sample size
+and then re-run your analysis? Would you still get a significant result?
+What if you were to increase that sample size by 5, or 10? How small can
+your sample size be before you detect a significant pattern (p &lt;
+0.05)? How small can the differences between the groups be (the “effect
+size”) for you to still detect a significant pattern?</h3>
+<pre class="r"><code># Set seed for reproducibility
 set.seed(25)
 
-# Change sample sizes
+# Change sample sizes, decreasing sample sizes
 m &lt;- c(2,3,4,5,6,7,8,9,10,15)
 for (i in seq_along(m)){
   print(m[i])
@@ -654,9 +784,18 @@ for (i in seq_along(m)){
 ## Residual standard error: 1.61 on 43 degrees of freedom
 ## Multiple R-squared:  0.6603, Adjusted R-squared:  0.6524 
 ## F-statistic: 83.58 on 1 and 43 DF,  p-value: 1.222e-11</code></pre>
-<pre class="r"><code># I wanted to test if changing the sample sizes would impact the p-value and r-squared of the regression. I found a significant difference (p &lt; 0.05) with 20 samples, so I wanted to see how if I decreased the sample size that at what sample size I would not see a significant difference. Therefore, I created a for loop and included various sample sizes and found that at 2 sample sizes, I did not see a significant difference. So, a sample size of 3 would be the effective sample size (this is the answer for Question 7). 
-
-# Change the means for each temp group for sample size of 20
+<div
+id="i-wanted-to-test-if-changing-the-sample-sizes-would-impact-the-p-value-and-r-squared-of-the-regression.-i-found-a-significant-difference-p-0.05-with-20-samples-so-i-wanted-to-see-how-if-i-decreased-the-sample-size-that-at-what-sample-size-i-would-not-see-a-significant-difference.-therefore-i-created-a-for-loop-and-included-various-sample-sizes-and-found-that-at-2-sample-sizes-i-did-not-see-a-significant-difference.-so-a-sample-size-of-3-would-be-the-effective-sample-size-this-is-the-answer-for-question-7."
+class="section level5">
+<h5>I wanted to test if changing the sample sizes would impact the
+p-value and r-squared of the regression. I found a significant
+difference (p &lt; 0.05) with 20 samples, so I wanted to see how if I
+decreased the sample size that at what sample size I would not see a
+significant difference. Therefore, I created a for loop and included
+various sample sizes and found that at 2 sample sizes, I did not see a
+significant difference. So, a sample size of 3 would be the effective
+sample size (this is the answer for Question 7).</h5>
+<pre class="r"><code># Change the means for each temp group for sample size of 20
 mean_low &lt;- c(5, 6, 7, 8, 9, 10, 11)
 for (i in seq_along(mean_low)){
   print(mean_low[i])
@@ -823,13 +962,42 @@ for (i in seq_along(mean_low)){
 ## Residual standard error: 1.533 on 34 degrees of freedom
 ## Multiple R-squared:  0.7388, Adjusted R-squared:  0.7312 
 ## F-statistic: 96.19 on 1 and 34 DF,  p-value: 1.915e-11</code></pre>
-<pre class="r"><code>## The lower the mean is for the low temperature group, the less the p value gets from the regression analysis. This does mot really have any significant management implications because you really can not alter the means (the data is the data that you collect) however, for practicing the for loop, it was helpful to do. 
-
-# Question 7. Alternatively, for the effect sizes you originally hypothesized, what is the minimum sample size you would need in order to detect a statistically significant effect? Again, run the model a few times with the same parameter set to get a feeling for the effect of random variation in the data.
-
-## See the comment in Question #6. The effective sample size to detect a significant difference in the linear regression would be 
-
-# Question 8. Write up your results in a markdown file, organized with headers and different code chunks to show your analysis. Be explicit in your explanation and justification for sample sizes, means, and variances.</code></pre>
+</div>
+<div
+id="the-lower-the-mean-is-for-the-low-temperature-group-the-less-the-p-value-gets-from-the-regression-analysis.-this-does-mot-really-have-any-significant-management-implications-because-you-really-can-not-alter-the-means-the-data-is-the-data-that-you-collect-however-for-practicing-the-for-loop-it-was-helpful-to-do."
+class="section level5">
+<h5>The lower the mean is for the low temperature group, the less the p
+value gets from the regression analysis. This does mot really have any
+significant management implications because you really can not alter the
+means (the data is the data that you collect) however, for practicing
+the for loop, it was helpful to do.</h5>
+</div>
+</div>
+<div
+id="question-7.-alternatively-for-the-effect-sizes-you-originally-hypothesized-what-is-the-minimum-sample-size-you-would-need-in-order-to-detect-a-statistically-significant-effect-again-run-the-model-a-few-times-with-the-same-parameter-set-to-get-a-feeling-for-the-effect-of-random-variation-in-the-data."
+class="section level3">
+<h3>Question 7. Alternatively, for the effect sizes you originally
+hypothesized, what is the minimum sample size you would need in order to
+detect a statistically significant effect? Again, run the model a few
+times with the same parameter set to get a feeling for the effect of
+random variation in the data.</h3>
+<div
+id="see-the-comment-in-question-6.-the-effective-sample-size-to-detect-a-significant-difference-in-the-linear-regression-would-be"
+class="section level5">
+<h5>See the comment in Question #6. The effective sample size to detect
+a significant difference in the linear regression would be</h5>
+</div>
+</div>
+<div
+id="question-8.-write-up-your-results-in-a-markdown-file-organized-with-headers-and-different-code-chunks-to-show-your-analysis.-be-explicit-in-your-explanation-and-justification-for-sample-sizes-means-and-variances."
+class="section level3">
+<h3>Question 8. Write up your results in a markdown file, organized with
+headers and different code chunks to show your analysis. Be explicit in
+your explanation and justification for sample sizes, means, and
+variances.</h3>
+<div id="complete" class="section level5">
+<h5>Complete</h5>
+</div>
 </div>
 
 

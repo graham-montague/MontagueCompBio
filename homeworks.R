@@ -1,3 +1,22 @@
+# git hub to website:
+# go to terminal
+# git status
+# git pull
+# git status
+# git add -A
+# git status
+# git commit -am 'brief message'
+# git status
+# git push
+# git status
+# git pull
+
+
+
+
+
+
+
 # homework 4
 
 # Question 1

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Graham Montague" />
+
+<meta name="date" content="2025-02-19" />
+
+<title>Homework 6</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="Homeworks.html">Homeworks</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework 6</h1>
+<h4 class="author">Graham Montague</h4>
+<h4 class="date">2025-02-19</h4>
+
+</div>
+
+
+<div id="question-1" class="section level2">
+<h2>Question 1</h2>
+<pre class="r"><code># Question 1. Think about an ongoing study in your lab (or a paper you have read in a different class), and decide on a pattern that you might expect in your experiment if a specific hypothesis were true.
+
+# I am in Dr. Mark Henderson&#39;s lab studying catch per unit effort (CPUE; fish/hr) of Atlantic Salmon in Lake Champlain using boat electrofishing. We have generated CPUE of Atlantic Salmon catch rates for a sampling protocol for fish collection for acoustic telemetry studies. Understanding the optimal sampling time is beneficial for us because we want to be most efficient while collecting fish in the field. We are interested in how the water temperature of Lake Champlain effects the CPUE of Atlantic Salmon. We hypothesize that as the water temperature increases, the CPUE of Atlantic Salmon will decrease because the Atlantic Salmon will be in deeper water and out of the electrical field where we are shocking (&lt;15 ft.). The Atlantic Salmon are cold-water fish and want to live in the cooler and deeper waters when the surface temperature is higher. 
+
+# Question 2. To start simply, assume that the data in each of your treatment groups follow a normal distribution. Specify the sample sizes, means, and variances for each group that would be reasonable if your hypothesis were true. You may need to consult some previous literature and/or an expert in the field to come up with these numbers.
+
+# Question 3. Using the methods we have covered in class, write code to create a random data set that has these attributes. Organize these data into a data frame with the appropriate structure.
+library(ggplot2)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code># Set seed for reproducibility
+# set.seed(25)
+
+# Create the data
+?rnorm()
+
+low &lt;- data.frame(
+  temp_group = &quot;Low (2-4.9°C)&quot;,
+  CPUE = rnorm(n = 20, mean = 18, sd = 1.2),
+  temperature = runif(20, 2, 4.9));low</code></pre>
+<pre><code>##       temp_group     CPUE temperature
+## 1  Low (2-4.9°C) 17.72400    2.873048
+## 2  Low (2-4.9°C) 19.03682    2.608867
+## 3  Low (2-4.9°C) 18.03183    2.056087
+## 4  Low (2-4.9°C) 17.01202    3.525432
+## 5  Low (2-4.9°C) 16.82971    4.485717
+## 6  Low (2-4.9°C) 17.50353    2.867130
+## 7  Low (2-4.9°C) 16.30767    2.969879
+## 8  Low (2-4.9°C) 17.10170    3.162876
+## 9  Low (2-4.9°C) 17.72718    4.234640
+## 10 Low (2-4.9°C) 16.33437    2.529829
+## 11 Low (2-4.9°C) 19.25189    2.960246
+## 12 Low (2-4.9°C) 17.67312    3.761860
+## 13 Low (2-4.9°C) 18.93493    2.898942
+## 14 Low (2-4.9°C) 18.47369    3.450713
+## 15 Low (2-4.9°C) 18.12341    2.983158
+## 16 Low (2-4.9°C) 17.68578    4.341701
+## 17 Low (2-4.9°C) 18.52991    2.095614
+## 18 Low (2-4.9°C) 18.80515    4.401062
+## 19 Low (2-4.9°C) 19.50316    4.579444
+## 20 Low (2-4.9°C) 19.05140    2.135942</code></pre>
+<pre class="r"><code>medium &lt;- data.frame(
+  temp_group = &quot;Medium (5-7.9°C)&quot;,
+  CPUE = rnorm(n = 20, mean = 12, sd = 1.5),
+  temperature = runif(20, 5, 7.9));medium</code></pre>
+<pre><code>##          temp_group     CPUE temperature
+## 1  Medium (5-7.9°C) 13.17517    6.403858
+## 2  Medium (5-7.9°C) 11.41658    6.811768
+## 3  Medium (5-7.9°C) 11.53967    5.002662
+## 4  Medium (5-7.9°C) 12.49969    5.693462
+## 5  Medium (5-7.9°C) 12.32785    7.764774
+## 6  Medium (5-7.9°C) 12.82427    7.649294
+## 7  Medium (5-7.9°C) 15.33909    5.854204
+## 8  Medium (5-7.9°C) 13.65571    5.005310
+## 9  Medium (5-7.9°C) 11.49046    5.787896
+## 10 Medium (5-7.9°C) 11.66669    7.250334
+## 11 Medium (5-7.9°C) 13.29718    6.757309
+## 12 Medium (5-7.9°C) 11.40860    5.606898
+## 13 Medium (5-7.9°C) 10.57860    7.429393
+## 14 Medium (5-7.9°C) 10.88196    7.780568
+## 15 Medium (5-7.9°C) 13.94016    7.107844
+## 16 Medium (5-7.9°C) 12.58646    7.238450
+## 17 Medium (5-7.9°C) 12.58985    5.228737
+## 18 Medium (5-7.9°C) 12.31877    5.201234
+## 19 Medium (5-7.9°C) 11.64561    7.265833
+## 20 Medium (5-7.9°C) 10.16854    5.397482</code></pre>
+<pre class="r"><code>high &lt;- data.frame(
+  temp_group = &quot;High (8-10.9°C)&quot;,
+  CPUE = rnorm(n = 20, mean = 8, sd = 2),
+  temperature = runif(20, 8, 10.9));high</code></pre>
+<pre><code>##         temp_group      CPUE temperature
+## 1  High (8-10.9°C)  9.933984    9.136340
+## 2  High (8-10.9°C) 11.494992    8.344202
+## 3  High (8-10.9°C)  4.301487   10.489899
+## 4  High (8-10.9°C)  9.075058    9.677944
+## 5  High (8-10.9°C) 10.211324    8.911392
+## 6  High (8-10.9°C)  5.719453    8.845359
+## 7  High (8-10.9°C)  9.431467    9.877821
+## 8  High (8-10.9°C) 13.815573    9.703814
+## 9  High (8-10.9°C)  9.698888    9.013167
+## 10 High (8-10.9°C)  9.166769   10.575053
+## 11 High (8-10.9°C)  9.583680    9.630785
+## 12 High (8-10.9°C)  7.098275    9.560682
+## 13 High (8-10.9°C)  6.163308    8.548842
+## 14 High (8-10.9°C)  6.802757    9.849363
+## 15 High (8-10.9°C)  3.877435    8.358073
+## 16 High (8-10.9°C)  7.407579    9.020402
+## 17 High (8-10.9°C)  7.420958   10.628018
+## 18 High (8-10.9°C)  6.747080   10.079525
+## 19 High (8-10.9°C)  9.726674    9.686854
+## 20 High (8-10.9°C)  8.455294    8.040963</code></pre>
+<pre class="r"><code># combine all of the the datasets together to make a big dataset with low, medium, and high datasets
+data &lt;- rbind(low, medium, high)
+
+# Question 4. Now write code to analyze the data (probably as an ANOVA or regression analysis, but possibly as a logistic regression or contingency table analysis. Write code to generate a useful graph of the data.
+
+# First, we can do a linear regression on the continuous variables 
+# Fit linear model
+linear_regression &lt;- lm(CPUE ~ temperature, data = data)
+
+my_out &lt;- c(slope=summary(linear_regression)$coefficients[2,1],
+            p_value=summary(linear_regression)$coefficients[2,4],
+            r_squared = summary(linear_regression)$r.squared);my_out</code></pre>
+<pre><code>##         slope       p_value     r_squared 
+## -1.423983e+00  2.004982e-20  7.746941e-01</code></pre>
+<pre class="r"><code>print(summary(linear_regression))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.1184 -1.2115  0.1649  1.4199  5.7360 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  21.8976     0.6940   31.55   &lt;2e-16 ***
+## temperature  -1.4240     0.1008  -14.12   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.07 on 58 degrees of freedom
+## Multiple R-squared:  0.7747, Adjusted R-squared:  0.7708 
+## F-statistic: 199.4 on 1 and 58 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>## 
+
+# 3. Visualizations
+# Create scatter plot with regression line
+scatter_plot &lt;- ggplot(data, aes(x = temperature, y = CPUE)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = &quot;lm&quot;, color = &quot;blue&quot;) +
+  labs(
+    title = &quot;Linear Regression: CPUE vs Temperature&quot;,
+    x = &quot;Temperature (°C)&quot;,
+    y = &quot;CPUE (fish/hour)&quot;
+  ) + theme(plot.title = element_text(size = 10));scatter_plot</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code># Question 5. Try running your analysis multiple times to get a feeling for how variable the results are with the same parameters, but different sets of random numbers.
+
+## I have rerun the code above so that the random numbers change each time to see the differences!
+
+# Question 6. Now, using a series of for loops, adjust the parameters of your data to explore how they might impact your results/analysis, and store the results of your for loops into an object so you can view it. For example, what happens if you were to start with a small sample size and then re-run your analysis? Would you still get a significant result? What if you were to increase that sample size by 5, or 10? How small can your sample size be before you detect a significant pattern (p &lt; 0.05)? How small can the differences between the groups be (the “effect size”) for you to still detect a significant pattern?
+# Set seed for reproducibility
+set.seed(25)
+
+# Change sample sizes
+m &lt;- c(2,3,4,5,6,7,8,9,10,15)
+for (i in seq_along(m)){
+  print(m[i])
+  low &lt;- data.frame(
+    temp_group = &quot;Low (2-4.9°C)&quot;,
+    CPUE = rnorm(n = m[i], mean = 10, sd = 1.2),
+    temperature = runif(m[i], 2, 4.9));low
+  
+  medium &lt;- data.frame(
+    temp_group = &quot;Medium (5-7.9°C)&quot;,
+    CPUE = rnorm(n = m[i], mean = 6, sd = 1.3),
+    temperature = runif(m[i], 5, 7.9));medium
+  
+  high &lt;- data.frame(
+    temp_group = &quot;High (8-10.9°C)&quot;,
+    CPUE = rnorm(n = m[i], mean = 4, sd = 1.3),
+    temperature = runif(m[i], 8, 10.9));high
+  data &lt;- rbind(low, medium, high)
+  linear_regression &lt;- lm(CPUE ~ temperature, data = data)
+  
+  my_out &lt;- c(slope=summary(linear_regression)$coefficients[2,1],
+              p_value=summary(linear_regression)$coefficients[2,4],
+              r_squared = summary(linear_regression)$r.squared);my_out
+  
+  print(summary(linear_regression))
+  
+}</code></pre>
+<pre><code>## [1] 2
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##          1          2          3          4          5          6 
+##  0.8469007  1.2145919 -0.5198041 -2.8316596  1.2904690 -0.0004979 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)  10.1884     1.8682   5.454  0.00549 **
+## temperature  -0.5462     0.2664  -2.050  0.10969   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.743 on 4 degrees of freedom
+## Multiple R-squared:  0.5123, Adjusted R-squared:  0.3904 
+## F-statistic: 4.202 on 1 and 4 DF,  p-value: 0.1097
+## 
+## [1] 3
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.2387 -0.5525 -0.4107  0.4796  1.7739 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  10.0502     0.8776  11.452  8.7e-06 ***
+## temperature  -0.6029     0.1268  -4.755  0.00207 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.133 on 7 degrees of freedom
+## Multiple R-squared:  0.7636, Adjusted R-squared:  0.7298 
+## F-statistic: 22.61 on 1 and 7 DF,  p-value: 0.002071
+## 
+## [1] 4
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.0370 -0.2571  0.2918  0.6447  1.1882 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  13.0428     0.7764  16.800 1.17e-08 ***
+## temperature  -1.0128     0.1111  -9.115 3.69e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.049 on 10 degrees of freedom
+## Multiple R-squared:  0.8926, Adjusted R-squared:  0.8818 
+## F-statistic: 83.08 on 1 and 10 DF,  p-value: 3.691e-06
+## 
+## [1] 5
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.7083 -0.6493 -0.1143  1.0652  2.3842 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  12.2416     1.0519  11.638 3.02e-08 ***
+## temperature  -0.9881     0.1549  -6.379 2.42e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.577 on 13 degrees of freedom
+## Multiple R-squared:  0.7579, Adjusted R-squared:  0.7393 
+## F-statistic:  40.7 on 1 and 13 DF,  p-value: 2.42e-05
+## 
+## [1] 6
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.6086 -0.7090  0.2239  0.6371  2.1014 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  12.9854     0.8334   15.58 4.32e-11 ***
+## temperature  -1.0271     0.1200   -8.56 2.28e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.279 on 16 degrees of freedom
+## Multiple R-squared:  0.8208, Adjusted R-squared:  0.8096 
+## F-statistic: 73.28 on 1 and 16 DF,  p-value: 2.28e-07
+## 
+## [1] 7
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.0736 -1.4616 -0.1995  1.5237  3.8252 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  12.4245     1.1364  10.933 1.23e-09 ***
+## temperature  -0.8355     0.1631  -5.124 6.03e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.075 on 19 degrees of freedom
+## Multiple R-squared:  0.5802, Adjusted R-squared:  0.5581 
+## F-statistic: 26.26 on 1 and 19 DF,  p-value: 6.03e-05
+## 
+## [1] 8
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.0045 -1.3996  0.1014  1.0751  2.1870 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  12.8518     0.8163  15.743 1.85e-13 ***
+## temperature  -0.9032     0.1143  -7.906 7.18e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.586 on 22 degrees of freedom
+## Multiple R-squared:  0.7396, Adjusted R-squared:  0.7278 
+## F-statistic:  62.5 on 1 and 22 DF,  p-value: 7.184e-08
+## 
+## [1] 9
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.6962 -1.1016 -0.4546  0.9743  4.2637 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  13.2322     0.8820  15.003 5.22e-14 ***
+## temperature  -0.9206     0.1278  -7.202 1.51e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.718 on 25 degrees of freedom
+## Multiple R-squared:  0.6748, Adjusted R-squared:  0.6617 
+## F-statistic: 51.87 on 1 and 25 DF,  p-value: 1.511e-07
+## 
+## [1] 10
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.53824 -0.83461  0.08895  0.78612  2.39261 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 11.93585    0.65594  18.197  &lt; 2e-16 ***
+## temperature -0.80439    0.09302  -8.648 2.15e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.4 on 28 degrees of freedom
+## Multiple R-squared:  0.7276, Adjusted R-squared:  0.7178 
+## F-statistic: 74.78 on 1 and 28 DF,  p-value: 2.147e-09
+## 
+## [1] 15
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.0690 -1.2985 -0.1933  1.3796  2.8533 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 12.22348    0.65825  18.570  &lt; 2e-16 ***
+## temperature -0.85161    0.09315  -9.142 1.22e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.61 on 43 degrees of freedom
+## Multiple R-squared:  0.6603, Adjusted R-squared:  0.6524 
+## F-statistic: 83.58 on 1 and 43 DF,  p-value: 1.222e-11</code></pre>
+<pre class="r"><code># I wanted to test if changing the sample sizes would impact the p-value and r-squared of the regression. I found a significant difference (p &lt; 0.05) with 20 samples, so I wanted to see how if I decreased the sample size that at what sample size I would not see a significant difference. Therefore, I created a for loop and included various sample sizes and found that at 2 sample sizes, I did not see a significant difference. So, a sample size of 3 would be the effective sample size (this is the answer for Question 7). 
+
+# Change the means for each temp group for sample size of 20
+mean_low &lt;- c(5, 6, 7, 8, 9, 10, 11)
+for (i in seq_along(mean_low)){
+  print(mean_low[i])
+  low &lt;- data.frame(
+    temp_group = &quot;Low (2-4.9°C)&quot;,
+    CPUE = rnorm(n = 20, mean = mean_low[i], sd = 1.2),
+    temperature = runif(20, 2, 4.9));low
+  
+  medium &lt;- data.frame(
+    temp_group = &quot;Medium (5-7.9°C)&quot;,
+    CPUE = rnorm(n = m[i], mean = 6, sd = 1.3),
+    temperature = runif(m[i], 5, 7.9));medium
+  
+  high &lt;- data.frame(
+    temp_group = &quot;High (8-10.9°C)&quot;,
+    CPUE = rnorm(n = m[i], mean = 4, sd = 1.3),
+    temperature = runif(m[i], 8, 10.9));high
+  data &lt;- rbind(low, medium, high)
+  linear_regression &lt;- lm(CPUE ~ temperature, data = data)
+  
+  my_out &lt;- c(slope=summary(linear_regression)$coefficients[2,1],
+              p_value=summary(linear_regression)$coefficients[2,4],
+              r_squared = summary(linear_regression)$r.squared);my_out
+  
+  print(summary(linear_regression))
+  
+}</code></pre>
+<pre><code>## [1] 5
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.9305 -0.6873  0.0905  1.0142  2.4402 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   3.9025     0.7308   5.340 2.32e-05 ***
+## temperature   0.2206     0.1460   1.511    0.145    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.523 on 22 degrees of freedom
+## Multiple R-squared:  0.09404,    Adjusted R-squared:  0.05286 
+## F-statistic: 2.284 on 1 and 22 DF,  p-value: 0.145
+## 
+## [1] 6
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.1438 -0.7516 -0.1246  0.6296  2.1268 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   7.1362     0.5323  13.407 1.22e-12 ***
+## temperature  -0.4297     0.1146  -3.749  0.00099 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.109 on 24 degrees of freedom
+## Multiple R-squared:  0.3694, Adjusted R-squared:  0.3431 
+## F-statistic: 14.06 on 1 and 24 DF,  p-value: 0.0009903
+## 
+## [1] 7
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.0482 -0.4912  0.1494  0.4754  2.1363 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  8.95120    0.43078   20.78  &lt; 2e-16 ***
+## temperature -0.46463    0.07915   -5.87 3.44e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.088 on 26 degrees of freedom
+## Multiple R-squared:  0.5699, Adjusted R-squared:  0.5534 
+## F-statistic: 34.46 on 1 and 26 DF,  p-value: 3.445e-06
+## 
+## [1] 8
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.90192 -1.09600  0.07461  1.03858  2.27477 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  10.3087     0.5958  17.302  &lt; 2e-16 ***
+## temperature  -0.7039     0.1070  -6.578 3.93e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.407 on 28 degrees of freedom
+## Multiple R-squared:  0.6071, Adjusted R-squared:  0.5931 
+## F-statistic: 43.27 on 1 and 28 DF,  p-value: 3.925e-07
+## 
+## [1] 9
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.7049 -1.1223  0.3037  1.1845  2.8334 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  12.4398     0.6118   20.33  &lt; 2e-16 ***
+## temperature  -0.8269     0.1034   -8.00 6.27e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.502 on 30 degrees of freedom
+## Multiple R-squared:  0.6808, Adjusted R-squared:  0.6702 
+## F-statistic: 63.99 on 1 and 30 DF,  p-value: 6.272e-09
+## 
+## [1] 10
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.33207 -1.01424 -0.04888  1.00854  2.40947 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  13.0303     0.5104   25.53  &lt; 2e-16 ***
+## temperature  -0.9005     0.0858  -10.49 6.85e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.321 on 32 degrees of freedom
+## Multiple R-squared:  0.7749, Adjusted R-squared:  0.7679 
+## F-statistic: 110.2 on 1 and 32 DF,  p-value: 6.854e-12
+## 
+## [1] 11
+## 
+## Call:
+## lm(formula = CPUE ~ temperature, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.6385 -0.7122  0.1809  0.7864  3.2821 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 13.85992    0.61717  22.457  &lt; 2e-16 ***
+## temperature -0.97028    0.09893  -9.807 1.91e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.533 on 34 degrees of freedom
+## Multiple R-squared:  0.7388, Adjusted R-squared:  0.7312 
+## F-statistic: 96.19 on 1 and 34 DF,  p-value: 1.915e-11</code></pre>
+<pre class="r"><code>## The lower the mean is for the low temperature group, the less the p value gets from the regression analysis. This does mot really have any significant management implications because you really can not alter the means (the data is the data that you collect) however, for practicing the for loop, it was helpful to do. 
+
+# Question 7. Alternatively, for the effect sizes you originally hypothesized, what is the minimum sample size you would need in order to detect a statistically significant effect? Again, run the model a few times with the same parameter set to get a feeling for the effect of random variation in the data.
+
+## See the comment in Question #6. The effective sample size to detect a significant difference in the linear regression would be 
+
+# Question 8. Write up your results in a markdown file, organized with headers and different code chunks to show your analysis. Be explicit in your explanation and justification for sample sizes, means, and variances.</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

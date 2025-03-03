@@ -1,0 +1,96 @@
+---
+title: "Homework 6"
+author: "Graham Montague"
+date: "2025-02-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+
+```{r, echo=TRUE, eval=TRUE, results='show'}
+# Question 1. Think about an ongoing study in your lab (or a paper you have read in a different class), and decide on a pattern that you might expect in your experiment if a specific hypothesis were true.
+
+# I am in Dr. Mark Henderson's lab studying catch per unit effort (CPUE; fish/hr) of Atlantic Salmon in Lake Champlain using boat electrofishing. We are interested in how the water temperature of Lake Champlain effects the CPUE of Atlantic Salmon. We hypothesize that as the water temperature increases, the CPUE of Atlantic Salmon will also increase. 
+
+
+# Question 2. To start simply, assume that the data in each of your treatment groups follow a normal distribution. Specify the sample sizes, means, and variances for each group that would be reasonable if your hypothesis were true. You may need to consult some previous literature and/or an expert in the field to come up with these numbers.
+
+
+
+
+
+# set.seed(25) 
+# randomly assign a single random integer between 3 and 10 
+n_dims <- sample(3:10, 
+                 size = 1)
+print(n_dims)
+
+# part a: Create a vector of consecutive integers from 1 to n_dims^2. 
+# we need to create a vector of numbers 1: n_dims^2
+numbers <- 1:(n_dims^2)
+print(numbers)
+
+#part b: Use the sample function to randomly reshuffle these values.
+numbers <- sample(numbers)
+print(numbers)
+
+# part c: create a square matrix with these elements.
+# this needs to be square so we need to use 9 X 9 matrix because
+square_matrix <- matrix(numbers, 
+                 nrow = n_dims, 
+                 ncol = n_dims)
+
+# part d: print out the matrix.
+print(square_matrix)
+
+# part e: find a function in r to transpose the matrix.
+# I found the t() function to transpose my 9 X 9 matrix
+transposed <- t(square_matrix)
+
+# part f: print it out again and note how it has changed.
+print(transposed) # it flipped flopped the columns and the rows in the matrix. For example, the value in [1,2] of 67 for the square_matrix matrix moved to [2,1] in the transposed matrix
+
+# part g: calculate the sum and the mean of the elements in the first row and then the last row.
+# For the first row of the transposed matrix
+sum_first_row <- sum(transposed[1, ])
+print(sum_first_row)
+mean_first_row <- mean(transposed[1, ])
+print(mean_first_row)
+
+# For the last row of the transposed matrix
+sum_last_row <- sum(transposed[n_dims, ])
+print(sum_last_row)
+mean_last_row <- mean(transposed[n_dims, ])
+print(mean_last_row)
+
+# part h: read about the eigen() function and use it on your matrix
+?eigen()
+
+eigen_matrix <- eigen(transposed)
+print(eigen_matrix)
+
+# part i: look carefully at the elements of $values and $vectors in the output. What kind of numbers are these?
+eigen_values <- eigen_matrix$values
+print(eigen_values)
+eigen_vectors <- eigen_matrix$vectors
+print(eigen_vectors)
+
+# I have read the R help file on the output from the eigen() function. The help file states that the values and vectors may contain complex numbers. 
+
+# part j: dig in with the typeof() function to figure out their type.
+# Check the typeof() for the values of of the eigen matrix
+typeof(eigen_matrix$values) 
+# this returned that the values are complex
+
+# What is the typeof() of the vectors in the eigen table?
+typeof(eigen_matrix$vectors)
+# This also returned a complex type
+
+# part k: if have set your code up properly, you should be able to re-run it and create a matrix of different size because n_dims will change.
+
+# I re ran the code and it changed the n_dims. However, if I wanted to keep the same table, I would run the set.seed() function to prevent it from changing each time and it is reproducible. 
+```

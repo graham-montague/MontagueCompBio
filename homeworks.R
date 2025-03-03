@@ -216,3 +216,147 @@ my_df <- my_df[order(my_df$my_letters), ]
 # part f: calculate the column mean for the first variable.
 mean_variable1 <- mean(my_df$my_unis, na.rm = TRUE) # 5.15755
 
+
+
+
+
+
+# Homework 6 --------------------------
+
+# Question 1. Think about an ongoing study in your lab (or a paper you have read in a different class), and decide on a pattern that you might expect in your experiment if a specific hypothesis were true.
+
+# I am in Dr. Mark Henderson's lab studying catch per unit effort (CPUE; fish/hr) of Atlantic Salmon in Lake Champlain using boat electrofishing. We have generated CPUE of Atlantic Salmon catch rates for a sampling protocol for fish collection for acoustic telemetry studies. Understanding the optimal sampling time is beneficial for us because we want to be most efficient while collecting fish in the field. We are interested in how the water temperature of Lake Champlain effects the CPUE of Atlantic Salmon. We hypothesize that as the water temperature increases, the CPUE of Atlantic Salmon will decrease because the Atlantic Salmon will be in deeper water and out of the electrical field where we are shocking (<15 ft.). The Atlantic Salmon are cold-water fish and want to live in the cooler and deeper waters when the surface temperature is higher. 
+
+# Question 2. To start simply, assume that the data in each of your treatment groups follow a normal distribution. Specify the sample sizes, means, and variances for each group that would be reasonable if your hypothesis were true. You may need to consult some previous literature and/or an expert in the field to come up with these numbers.
+
+# Question 3. Using the methods we have covered in class, write code to create a random data set that has these attributes. Organize these data into a data frame with the appropriate structure.
+library(ggplot2)
+library(dplyr)
+
+# Set seed for reproducibility
+# set.seed(25)
+
+# Create the data
+?rnorm()
+
+low <- data.frame(
+  temp_group = "Low (2-4.9°C)",
+  CPUE = rnorm(n = 20, mean = 18, sd = 1.2),
+  temperature = runif(20, 2, 4.9));low
+
+medium <- data.frame(
+  temp_group = "Medium (5-7.9°C)",
+  CPUE = rnorm(n = 20, mean = 12, sd = 1.5),
+  temperature = runif(20, 5, 7.9));medium
+
+high <- data.frame(
+  temp_group = "High (8-10.9°C)",
+  CPUE = rnorm(n = 20, mean = 8, sd = 2),
+  temperature = runif(20, 8, 10.9));high
+
+# combine all of the the datasets together to make a big dataset with low, medium, and high datasets
+data <- rbind(low, medium, high)
+
+# Question 4. Now write code to analyze the data (probably as an ANOVA or regression analysis, but possibly as a logistic regression or contingency table analysis. Write code to generate a useful graph of the data.
+
+# First, we can do a linear regression on the continuous variables 
+# Fit linear model
+linear_regression <- lm(CPUE ~ temperature, data = data)
+
+my_out <- c(slope=summary(linear_regression)$coefficients[2,1],
+            p_value=summary(linear_regression)$coefficients[2,4],
+            r_squared = summary(linear_regression)$r.squared);my_out
+
+print(summary(linear_regression))
+
+## 
+
+# 3. Visualizations
+# Create scatter plot with regression line
+scatter_plot <- ggplot(data, aes(x = temperature, y = CPUE)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", color = "blue") +
+  labs(
+    title = "Linear Regression: CPUE vs Temperature",
+    x = "Temperature (°C)",
+    y = "CPUE (fish/hour)"
+  ) + theme(plot.title = element_text(size = 10));scatter_plot
+
+
+# Question 5. Try running your analysis multiple times to get a feeling for how variable the results are with the same parameters, but different sets of random numbers.
+
+## I have rerun the code above so that the random numbers change each time to see the differences!
+
+# Question 6. Now, using a series of for loops, adjust the parameters of your data to explore how they might impact your results/analysis, and store the results of your for loops into an object so you can view it. For example, what happens if you were to start with a small sample size and then re-run your analysis? Would you still get a significant result? What if you were to increase that sample size by 5, or 10? How small can your sample size be before you detect a significant pattern (p < 0.05)? How small can the differences between the groups be (the “effect size”) for you to still detect a significant pattern?
+# Set seed for reproducibility
+set.seed(25)
+
+# Change sample sizes
+m <- c(2,3,4,5,6,7,8,9,10,15)
+for (i in seq_along(m)){
+  print(m[i])
+  low <- data.frame(
+    temp_group = "Low (2-4.9°C)",
+    CPUE = rnorm(n = m[i], mean = 10, sd = 1.2),
+    temperature = runif(m[i], 2, 4.9));low
+  
+  medium <- data.frame(
+    temp_group = "Medium (5-7.9°C)",
+    CPUE = rnorm(n = m[i], mean = 6, sd = 1.3),
+    temperature = runif(m[i], 5, 7.9));medium
+  
+  high <- data.frame(
+    temp_group = "High (8-10.9°C)",
+    CPUE = rnorm(n = m[i], mean = 4, sd = 1.3),
+    temperature = runif(m[i], 8, 10.9));high
+  data <- rbind(low, medium, high)
+  linear_regression <- lm(CPUE ~ temperature, data = data)
+  
+  my_out <- c(slope=summary(linear_regression)$coefficients[2,1],
+              p_value=summary(linear_regression)$coefficients[2,4],
+              r_squared = summary(linear_regression)$r.squared);my_out
+  
+  print(summary(linear_regression))
+  
+}
+
+# I wanted to test if changing the sample sizes would impact the p-value and r-squared of the regression. I found a significant difference (p < 0.05) with 20 samples, so I wanted to see how if I decreased the sample size that at what sample size I would not see a significant difference. Therefore, I created a for loop and included various sample sizes and found that at 2 sample sizes, I did not see a significant difference. So, a sample size of 3 would be the effective sample size (this is the answer for Question 7). 
+
+# Change the means for each temp group for sample size of 20
+mean_low <- c(5, 6, 7, 8, 9, 10, 11)
+for (i in seq_along(mean_low)){
+  print(mean_low[i])
+  low <- data.frame(
+    temp_group = "Low (2-4.9°C)",
+    CPUE = rnorm(n = 20, mean = mean_low[i], sd = 1.2),
+    temperature = runif(20, 2, 4.9));low
+  
+  medium <- data.frame(
+    temp_group = "Medium (5-7.9°C)",
+    CPUE = rnorm(n = m[i], mean = 6, sd = 1.3),
+    temperature = runif(m[i], 5, 7.9));medium
+  
+  high <- data.frame(
+    temp_group = "High (8-10.9°C)",
+    CPUE = rnorm(n = m[i], mean = 4, sd = 1.3),
+    temperature = runif(m[i], 8, 10.9));high
+  data <- rbind(low, medium, high)
+  linear_regression <- lm(CPUE ~ temperature, data = data)
+  
+  my_out <- c(slope=summary(linear_regression)$coefficients[2,1],
+              p_value=summary(linear_regression)$coefficients[2,4],
+              r_squared = summary(linear_regression)$r.squared);my_out
+  
+  print(summary(linear_regression))
+  
+}
+
+## The lower the mean is for the low temperature group, the less the p value gets from the regression analysis. This does mot really have any significant management implications because you really can not alter the means (the data is the data that you collect) however, for practicing the for loop, it was helpful to do. 
+
+# Question 7. Alternatively, for the effect sizes you originally hypothesized, what is the minimum sample size you would need in order to detect a statistically significant effect? Again, run the model a few times with the same parameter set to get a feeling for the effect of random variation in the data.
+
+## See the comment in Question #6. The effective sample size to detect a significant difference in the linear regression would be 
+
+# Question 8. Write up your results in a markdown file, organized with headers and different code chunks to show your analysis. Be explicit in your explanation and justification for sample sizes, means, and variances.
+
+## Check Homework_6 tab for Markdown

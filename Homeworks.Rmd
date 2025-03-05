@@ -22,3 +22,5 @@ This is my homeworks page for Computational Biology.
 
 [Week 6](Homework_6.html)
 
+[Week 7](Homework_7.html)
+

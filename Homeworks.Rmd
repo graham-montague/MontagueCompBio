@@ -24,3 +24,5 @@ This is my homeworks page for Computational Biology.
 
 [Week 7](Homework_7.html)
 
+[Week 8](Homework_8.html)
+

@@ -563,6 +563,7 @@ sdML2 &lt;- normPars2$estimate[&quot;sd&quot;]
 xval2 &lt;- seq(0,max(z2$myVar),len=length(z2$myVar))
 
 stat2 &lt;- stat_function(aes(x = xval2, y = ..y..), fun = dnorm, colour=&quot;red&quot;, n = length(z2$myVar), args = list(mean = meanML2, sd = sdML2))
+
 # simulated data
 p2 + stat2</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>

@@ -1,0 +1,29 @@
+NEON Bird Data Analysis Log
+Date:  2025-04-16 13:57:02 
+
+Found 10 year folders
+Processing: NEON.D01.BART.DP1.10003.001.brd_countdata.2015-06.basic.20241118T065914Z.csv from folder: NEON.D01.BART.DP1.10003.001.2015-06.basic.20250129T000730Z.RELEASE-2025 
+  Abundance: 459 Species Richness: 40 
+Processing: NEON.D01.BART.DP1.10003.001.brd_countdata.2016-06.basic.20241118T142515Z.csv from folder: NEON.D01.BART.DP1.10003.001.2016-06.basic.20250129T000730Z.RELEASE-2025 
+  Abundance: 696 Species Richness: 38 
+Processing: NEON.D01.BART.DP1.10003.001.brd_countdata.2017-06.basic.20241118T043125Z.csv from folder: NEON.D01.BART.DP1.10003.001.2017-06.basic.20250129T000730Z.RELEASE-2025 
+  Abundance: 411 Species Richness: 34 
+Processing: NEON.D01.BART.DP1.10003.001.brd_countdata.2018-06.basic.20241118T105926Z.csv from folder: NEON.D01.BART.DP1.10003.001.2018-06.basic.20250129T000730Z.RELEASE-2025 
+  Abundance: 515 Species Richness: 36 
+Processing: NEON.D01.BART.DP1.10003.001.brd_countdata.2019-06.basic.20241118T064156Z.csv from folder: NEON.D01.BART.DP1.10003.001.2019-06.basic.20250129T000730Z.RELEASE-2025 
+  Abundance: 410 Species Richness: 43 
+Processing: NEON.D01.BART.DP1.10003.001.brd_countdata.2020-06.basic.20241118T184512Z.csv from folder: NEON.D01.BART.DP1.10003.001.2020-06.basic.20250129T000730Z.RELEASE-2025 
+  Abundance: 489 Species Richness: 45 
+Processing: NEON.D01.BART.DP1.10003.001.brd_countdata.2020-07.basic.20241118T010504Z.csv from folder: NEON.D01.BART.DP1.10003.001.2020-07.basic.20250129T000730Z.RELEASE-2025 
+  Abundance: 54 Species Richness: 17 
+Processing: NEON.D01.BART.DP1.10003.001.brd_countdata.2021-06.basic.20241118T105538Z.csv from folder: NEON.D01.BART.DP1.10003.001.2021-06.basic.20250129T000730Z.RELEASE-2025 
+  Abundance: 920 Species Richness: 49 
+Processing: NEON.D01.BART.DP1.10003.001.brd_countdata.2022-06.basic.20241118T033934Z.csv from folder: NEON.D01.BART.DP1.10003.001.2022-06.basic.20250129T000730Z.RELEASE-2025 
+  Abundance: 592 Species Richness: 38 
+Processing: NEON.D01.BART.DP1.10003.001.brd_countdata.2023-06.basic.20241118T091043Z.csv from folder: NEON.D01.BART.DP1.10003.001.2023-06.basic.20250129T000730Z.RELEASE-2025 
+  Abundance: 523 Species Richness: 41 
+Saved the output as bird_data_summary.csv
+saved regression to the output regression_statistics.csv
+we made histograms and saved them
+
+Done with Analysis:  2025-04-16 13:57:09 

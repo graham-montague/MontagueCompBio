@@ -686,3 +686,86 @@ p1 + stat
 
 
 # Homework 9 ---------
+# load libraries ----
+library(pracma)
+library(pryr)
+library(devtools)
+install_github("ngotelli/upscaler")
+help(package="upscaler")
+library(upscaler)
+
+# Script to find "countdata" CSV files in multiple year folders
+# This script assumes you have a main directory with 10 year folders
+
+# Set the main directory path where your year folders are located
+# Replace this with your actual path
+main_dir <- "path/to/your/main/directory"
+
+# List all year folders
+year_folders <- list.dirs(main_dir, full.names = TRUE, recursive = FALSE)
+
+# Initialize an empty list to store the countdata file paths
+countdata_files <- c()
+
+# Loop through each year folder
+for (folder in year_folders) {
+  # List all files in the current folder
+  files <- list.files(folder, full.names = TRUE, pattern = "\\.csv$")
+  
+  # Find files with "countdata" in their name
+  countdata_in_folder <- files[grep("countdata", files, ignore.case = TRUE)]
+  
+  # Add found files to our list
+  countdata_files <- c(countdata_files, countdata_in_folder)
+  
+  # Print the files found in this folder
+  cat("Found in folder", basename(folder), ":\n")
+  if (length(countdata_in_folder) > 0) {
+    for (file in countdata_in_folder) {
+      cat("  -", basename(file), "\n")
+    }
+  } else {
+    cat("  No countdata files found\n")
+  }
+  cat("\n")
+}
+
+# Print the total number of countdata files found
+cat("Total countdata files found:", length(countdata_files), "\n")
+
+# Optional: Save the file paths to a text file
+write.table(countdata_files, file = "countdata_file_list.txt", 
+            row.names = FALSE, col.names = FALSE, quote = FALSE)
+
+# If you want to immediately read these files into a list of dataframes:
+countdata_list <- list()
+
+for (file in countdata_files) {
+  # Extract year from filename (adjust the pattern as needed)
+  year_match <- regexpr("\\d{6}", basename(file))
+  year <- NA
+  if (year_match > 0) {
+    year_str <- substr(basename(file), year_match, year_match + 5)
+    year <- substr(year_str, 1, 4)  # Extract just the year part
+  }
+  
+  # Read the CSV file
+  data <- read.csv(file)
+  
+  # Store in list with year as name
+  if (!is.na(year)) {
+    countdata_list[[year]] <- data
+  } else {
+    # Use the file basename if year extraction fails
+    countdata_list[[basename(file)]] <- data
+  }
+}
+
+# Print the names of the dataframes in the list
+cat("Dataframes created:\n")
+print(names(countdata_list))
+
+
+
+
+

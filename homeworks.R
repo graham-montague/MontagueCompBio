@@ -767,5 +767,204 @@ print(names(countdata_list))
 
 
 
+# homework 10 -----------------------------------------
+
+# Using R
+# Option 1: tidytuesdayR R package 
+## install.packages("tidytuesdayR")
+# Option 2: Read directly from GitHub
+
+pokemon_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-01/pokemon_df.csv')
+
+# # Export to CSV
+# write.csv(pokemon_df, "pokemon_data.csv", row.names = FALSE)
+
+# # Or using readr package for better performance
+# library(readr)
+# write_csv(pokemon_df, "pokemon_data.csv")
+
+# Read in the data
+pokemon_data <- read.csv("pokemon_data.csv")
+
+# Load required libraries
+library(tidyverse)
+library(ggbeeswarm)  # For beeswarm plots
+library(ggridges)    # For ridgeline plots
+library(waffle)      # For waffle plots
+library(treemap)     # For treemaps
+library(treemapify)  # For ggplot2 treemaps
+library(viridis)     # For nice color palettes
+library(hrbrthemes)  # For nice themes
+library(ggrepel)     # For text labels that don't overlap
+library(scales)      # For prettier axis formatting
+
+# Read in the data
+pokemon_data <- read.csv("pokemon_data.csv")
+
+# Data cleaning and preparation
+pokemon_clean <- pokemon_data %>%
+  # Convert empty strings to NA for character columns only
+  mutate(across(where(is.character), ~na_if(., ""))) %>%
+  # Remove any rows with NA in critical columns
+  filter(!is.na(type_1), !is.na(hp), !is.na(attack), !is.na(defense))
+
+
+# 2. RIDGELINE PLOT
+# Visualizing the distribution of HP across different types
+pokemon_ridgeline <- ggplot(
+  pokemon_clean %>%
+    # Filter to top 8 types for clarity
+    filter(type_1 %in% names(sort(table(pokemon_clean$type_1), decreasing = TRUE)[1:8])),
+  aes(x = hp, y = type_1, fill = type_1)
+) +
+  # Create the ridgeline plot
+  geom_density_ridges(
+    alpha = 0.7,
+    scale = 0.9,
+    rel_min_height = 0.01
+  ) +
+  # Add jittered points
+  geom_point(
+    aes(y = as.numeric(factor(type_1)) - 0.15),
+    alpha = 0.3,
+    size = 1.5,
+    shape = "|"
+  ) +
+  # Custom aesthetics
+  scale_fill_viridis_d(option = "plasma") +
+  labs(
+    title = "Distribution of HP Stats Across Pokemon Types",
+    subtitle = "Higher density indicates more Pokemon with that HP value",
+    x = "Hit Points (HP)",
+    y = NULL,
+    fill = "Type"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  );pokemon_ridgeline
+
+# Save the plot
+ggsave("pokemon_ridgeline.pdf", pokemon_ridgeline, width = 12, height = 8, dpi = 300)
+ggsave("pokemon_ridgeline.jpg", pokemon_ridgeline, width = 12, height = 8, dpi = 300)
+
+
+# 4. TREEMAP
+# Create data for treemap by egg group and type
+treemap_data <- pokemon_clean %>%
+  filter(!is.na(egg_group_1)) %>%
+  group_by(egg_group_1, type_1) %>%
+  summarize(
+    count = n(),
+    avg_hp = mean(hp, na.rm = TRUE),
+    avg_attack = mean(attack, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  # Keep only combinations with at least 3 Pokemon
+  filter(count >= 3)
+
+# Create the treemap using ggplot2
+pokemon_treemap <- ggplot(
+  treemap_data,
+  aes(
+    area = count,
+    fill = avg_attack,
+    label = paste0(egg_group_1, "\n", type_1, "\n", count, " Pokemon")
+  )
+) +
+  geom_treemap() +
+  geom_treemap_text(
+    colour = "white",
+    place = "centre",
+    size = 10,
+    grow = TRUE
+  ) +
+  scale_fill_viridis_c(option = "inferno") +
+  labs(
+    title = "Pokemon Egg Groups and Types",
+    subtitle = "Size represents number of Pokemon, color represents average Attack stat",
+    fill = "Avg Attack"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    legend.position = "right"
+  );pokemon_treemap
+
+# Save the plot
+ggsave("pokemon_treemap.pdf", pokemon_treemap, width = 12, height = 10, dpi = 300)
+ggsave("pokemon_treemap.jpg", pokemon_treemap, width = 12, height = 10, dpi = 300)
+
+
+# 5. 2-D DENSITY PLOT
+# Create 2D density plot of Speed vs Special Attack
+pokemon_density <- ggplot(
+  pokemon_clean,
+  aes(x = speed, y = special_attack)
+) +
+  # Create the 2D density estimate
+  geom_density_2d_filled(alpha = 0.8) +
+  # Add points
+  geom_point(alpha = 0.4) +
+  # Highlight some notable Pokemon
+  geom_text_repel(
+    data = pokemon_clean %>%
+      filter(speed > 120 | special_attack > 120),
+    aes(label = pokemon),
+    size = 3,
+    max.overlaps = 10,
+    box.padding = 0.5
+  ) +
+  # Custom aesthetics
+  scale_fill_viridis_d(option = "plasma", direction = -1) +
+  labs(
+    title = "Relationship Between Pokemon Speed and Special Attack",
+    subtitle = "Density contours show where most Pokemon are concentrated",
+    x = "Speed Stat",
+    y = "Special Attack Stat",
+    fill = "Density"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = "right",
+    panel.grid.minor = element_blank()
+  ) +
+  # Add annotations
+  annotate(
+    "text",
+    x = 140,
+    y = 50,
+    label = "Fast but low\nSpecial Attack",
+    fontface = "bold",
+    size = 4
+  ) +
+  annotate(
+    "text",
+    x = 70,
+    y = 140,
+    label = "High Special Attack\nbut slow",
+    fontface = "bold",
+    size = 4
+  ) +
+  # Add a diagonal reference line
+  geom_abline(
+    intercept = 0,
+    slope = 1,
+    linetype = "dashed",
+    color = "gray50"
+  ) +
+  # Expand axis limits to make room for labels
+  coord_cartesian(
+    xlim = c(0, 160),
+    ylim = c(0, 160)
+  );pokemon_density
+
+# Save the plot
+ggsave("pokemon_density.pdf", pokemon_density, width = 12, height = 10, dpi = 300)
+ggsave("pokemon_density.jpg", pokemon_density, width = 12, height = 10, dpi = 300)
+
 
 
